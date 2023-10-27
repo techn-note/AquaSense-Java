@@ -39,6 +39,23 @@ public class Montserrat {
             minhaFont = Font.createFont(
                     Font.TRUETYPE_FONT,
                     getClass().getResourceAsStream("/Fontes/Montserrat-Bold.ttf")
+            ).deriveFont(Font.PLAIN, pTamanhoFonte);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(minhaFont);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (FontFormatException ex) {
+            ex.printStackTrace();
+        }
+        return minhaFont;
+
+    }
+    
+     public Font FonteExtraBold(int pTamanhoFonte) {
+        Font minhaFont = null;
+        try {
+            minhaFont = Font.createFont(
+                    Font.TRUETYPE_FONT,
+                    getClass().getResourceAsStream("/Fontes/Montserrat-ExtraBold.ttf")
             ).deriveFont(Font.BOLD, pTamanhoFonte);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(minhaFont);
         } catch (IOException ex) {
