@@ -13,7 +13,7 @@ import Controle.Conexao;
  */
 public class Usuario {
     
-    private Conexao C = new Conexao();
+    Conexao C = new Conexao();
     
     private String nome;
     private String email;
@@ -29,14 +29,6 @@ public class Usuario {
         this.email = email;
         this.login = login;
         this.senha = senha;
-    }
-
-    public Conexao getC() {
-        return C;
-    }
-
-    public void setC(Conexao C) {
-        this.C = C;
     }
 
     public String getNome() {
@@ -69,5 +61,5 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }              
+    }
 }
