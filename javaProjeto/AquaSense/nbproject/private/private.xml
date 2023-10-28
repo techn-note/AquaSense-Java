@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dsm2/Desktop/AquaSense/javaProjeto/AquaSense/src/Fontes/Montserrat.java</file>
-            <file>file:/C:/Users/dsm2/Desktop/AquaSense/javaProjeto/AquaSense/src/Visualização/Inicio.java</file>
-            <file>file:/C:/Users/dsm2/Desktop/AquaSense/javaProjeto/AquaSense/src/Visualização/Login.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/git/AquaSense/javaProjeto/AquaSense/src/Modelo/Analise.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/git/AquaSense/javaProjeto/AquaSense/src/Modelo/tanque.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/git/AquaSense/javaProjeto/AquaSense/src/Modelo/Recomendacao.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/git/AquaSense/javaProjeto/AquaSense/src/Modelo/Sensor.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/git/AquaSense/javaProjeto/AquaSense/src/Visualização/Inicio.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/git/AquaSense/javaProjeto/AquaSense/src/Modelo/Usuario.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/git/AquaSense/javaProjeto/AquaSense/src/Modelo/Peixe.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/git/AquaSense/javaProjeto/AquaSense/src/Modelo/Alerta.java</file>
         </group>
     </open-files>
 </project-private>
