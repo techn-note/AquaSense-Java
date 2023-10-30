@@ -233,7 +233,7 @@ public class Login extends javax.swing.JFrame {
         boolean loginBemSucedido = conexao.fazerLogin(email, senha);
         
         if (loginBemSucedido) {
-            // O login foi bem-sucedido, você pode navegar para a próxima tela
+            
             JOptionPane.showMessageDialog(null, "Login Realizado");
         } else {
             JOptionPane.showMessageDialog(null, "Login inválido. Verifique suas credenciais.");

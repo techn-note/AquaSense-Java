@@ -162,12 +162,10 @@ public class Cadastro extends javax.swing.JFrame {
 
         Conexao conexao = new Conexao();
 
-// Certifica-se de que a conexão seja estabelecida
         if (conexao.conecta()) {
-            // Chama o método cadastrar da classe Conexao com os valores obtidos
+
             conexao.cadastrar(nome, email, senha);
 
-            // Após a inserção, você pode desconectar a conexão, se necessário
             conexao.desconecta();
         } else {
             System.err.println("Não foi possível estabelecer a conexão com o banco de dados.");
