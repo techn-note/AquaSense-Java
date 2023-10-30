@@ -154,14 +154,25 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-       
+
         String nome = txtNome.getText();
-        String email = txtNome.getText();
-        String login = txtNome.getText();
-        String senha = txtNome.getText();
-        
-        
-        
+        String email = txtEmail.getText();
+        char[] senhaChars =txtSenha.getPassword();
+        String senha = new String(senhaChars);
+
+        Conexao conexao = new Conexao();
+
+// Certifica-se de que a conexão seja estabelecida
+        if (conexao.conecta()) {
+            // Chama o método cadastrar da classe Conexao com os valores obtidos
+            conexao.cadastrar(nome, email, senha);
+
+            // Após a inserção, você pode desconectar a conexão, se necessário
+            conexao.desconecta();
+        } else {
+            System.err.println("Não foi possível estabelecer a conexão com o banco de dados.");
+        }
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**

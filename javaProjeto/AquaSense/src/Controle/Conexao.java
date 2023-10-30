@@ -8,6 +8,7 @@ package Controle;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -87,4 +88,44 @@ public class Conexao {
          }
          return resultSet;
  }
+    public void cadastrar(String nome, String email, String senha) { // Corrigido para "senha"
+    try {
+        // Substitua 'sua_tabela' pelo nome da tabela em seu banco de dados
+        String sql = "INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)";
+        
+        PreparedStatement statement = conexao.prepareStatement(sql);
+        statement.setString(1, nome);
+        statement.setString(2, email);
+        statement.setString(3, senha); // Usando a variável "senha"
+
+        // Executar a inserção
+        statement.executeUpdate();
+        System.out.println("Cadastro realizado com sucesso!");
+    } catch (SQLException e) {
+        System.err.println("Erro ao cadastrar: " + e.getMessage());
+    }
+}
+    
+    public boolean fazerLogin(String email, String senha) {
+    boolean sucesso = false;
+    try {
+        String sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
+        
+        PreparedStatement statement = conexao.prepareStatement(sql);
+        statement.setString(1, email);
+        statement.setString(2, senha);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        sucesso = resultSet.next();
+
+        resultSet.close();
+        statement.close();
+    } catch (SQLException e) {
+        System.err.println("Erro ao fazer login: " + e.getMessage());
+    }
+    return sucesso;
+}
+
+
 }
