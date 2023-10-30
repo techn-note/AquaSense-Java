@@ -223,7 +223,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(txtEmail.getText().equals("usuario") && txtSenha.getText(). equals("1234")){
+        if(txtEmail.getText().equals("2005rodrigosilva@gmail.com") && txtSenha.getText(). equals("123")){
             JOptionPane.showMessageDialog(null, "Bem-vindo");}
             else{
                     JOptionPane.showMessageDialog(null, "Acesso Negado");
