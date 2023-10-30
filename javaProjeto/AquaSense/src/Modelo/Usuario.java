@@ -13,7 +13,7 @@ import Controle.Conexao;
  */
 public class Usuario {
     
-    Conexao C = new Conexao();
+    Conexao C = new Conexao();    
     
     private String nome;
     private String email;

@@ -21,7 +21,7 @@ public class Conexao {
         
     final private String driver = "com.mysql.jdbc.Driver";
    
-    final private String url= "jdbc:mysql://127.0.0.1/NOMEBANCO";
+    final private String url= "jdbc:mysql://127.0.0.1/aquasense";
     
     final private String usuario="root";
     final private String senha="";
