@@ -6,22 +6,26 @@
 package Modelo;
 
 import Controle.Conexao;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author dsm2
  */
 public class Usuario {
-    
-    Conexao C = new Conexao();    
-    
+
+    Conexao C = new Conexao();
+
     private String nome;
     private String email;
     private String login;
     private String senha;
 
     public Usuario() {
-        this("","","","");
+        this("", "", "", "");
     }
 
     public Usuario(String nome, String email, String login, String senha) {
@@ -61,5 +65,33 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void cadastrar(String nome, String email, String senha) {
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos antes de registrar.");
+        } else {
+            String sql = "INSERT INTO usuario (nome, email, senha) VALUES ('" + nome + "','" + email + "','" + senha + "' )";
+
+            try {
+                C.executeSQL(sql);
+                JOptionPane.showMessageDialog(null, "Registrado com sucesso");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao registrar: " + e.getMessage());
+            }
+        }
+    }
+
+    public ResultSet fazerLogin(String email, String senha) {
+
+        ResultSet tabela;
+        tabela = null;
+
+        String sql = "SELECT * FROM usuario WHERE email = '" + this.getEmail() + "' AND senha = '" + this.getSenha() + "'";
+
+        tabela = C.RetornarResultset(sql);
+
+        return tabela;
+
     }
 }

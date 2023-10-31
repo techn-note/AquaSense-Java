@@ -5,12 +5,15 @@
  */
 package Visualização;
 
-
 import Controle.Conexao;
 import Modelo.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -83,6 +86,7 @@ public class Login extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 61, 165));
         jButton1.setForeground(new java.awt.Color(245, 245, 245));
         jButton1.setText("Entrar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -112,6 +116,12 @@ public class Login extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 61, 165));
         jLabel10.setText("Cadastre-se");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -146,7 +156,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(jLabel3)))
-                .addContainerGap(372, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -218,43 +228,43 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-       
+
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    String email = txtEmail.getText();
-    char[] senhaChars = txtSenha.getPassword();
-    String senha = new String(senhaChars);
+        U.setEmail(txtEmail.getText());
+        U.setSenha(txtSenha.getText());
 
-    Conexao conexao = new Conexao();
-    
-    if (conexao.conecta()) {
-        boolean loginBemSucedido = conexao.fazerLogin(email, senha);
-        
-        if (loginBemSucedido) {
-            
-            JOptionPane.showMessageDialog(null, "Login Realizado");
-        } else {
-            JOptionPane.showMessageDialog(null, "Login inválido. Verifique suas credenciais.");
+        ResultSet tabela;
+        tabela = null;
+
+        tabela = U.fazerLogin(U.getEmail(), U.getSenha());
+
+        try {
+            if (tabela.first()) {
+                Inicio inicio = new Inicio();
+                inicio.setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Login Incorreto");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        conexao.desconecta();
-    } else {
-        System.err.println("Não foi possível estabelecer a conexão com o banco de dados.");
-    }
-    
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        Cadastro cad = new Cadastro();
+        cad.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
