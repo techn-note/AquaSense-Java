@@ -579,7 +579,7 @@ public class Inicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                new Login().setVisible(true);
+                new Inicio().setVisible(true);
             }
         });
     }
