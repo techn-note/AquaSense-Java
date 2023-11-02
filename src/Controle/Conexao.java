@@ -21,13 +21,13 @@ public class Conexao {
 
     final private String driver = "com.mysql.jdbc.Driver";
 
-    final private String url = "jdbc:mysql://127.0.0.1/aquasense";
-
+    private String banco = null;
+    final private String url = "jdbc:mysql://127.0.0.1/" + banco;
     final private String usuario = "root";
     final private String senha = "";
-    private Connection conexao;// objeto que faz conexao com o banco
-    public Statement statement;// objeto que abre caminho até o banco
-    public ResultSet resultset;// objeto que armazena os comandos sql   
+    private Connection conexao;
+    public Statement statement;
+    public ResultSet resultset;
 
     public boolean conecta() {
         boolean result = true;
@@ -46,6 +46,53 @@ public class Conexao {
         }
         return result;
     }
+
+    public void novaConexao() {
+        
+        try {
+            Class.forName(driver);
+            conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1/", usuario, senha);
+        } catch (ClassNotFoundException Driver) {
+            JOptionPane.showMessageDialog(null, "Driver nao localizado: " + Driver);
+        } catch (SQLException Fonte) {
+            JOptionPane.showMessageDialog(null, "Erro na conexão com a fonte de dados: " + Fonte);
+        }
+
+    }
+    
+    public void createDatabase() {
+        novaConexao();
+        
+        banco = "CREATE DATABASE IF NOT EXISTS aquasense";
+         try {
+
+            statement = conexao.createStatement();
+
+            statement.execute(banco);
+            //desconecta();
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
+        }
+        
+    }
+    
+    public void createTable() {
+    novaConexao();
+        
+        String table = "CREATE TABLE IF NOT EXISTS usuario";
+         try {
+
+            statement = conexao.createStatement();
+
+            statement.execute(table);
+            //desconecta();
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
+        }
+        
+    }
+    
+
 
     public void desconecta() {
         boolean result = true;
@@ -84,7 +131,7 @@ public class Conexao {
         }
         return resultSet;
     }
-    
+
     public Statement createStatement() throws SQLException {
         throw new UnsupportedOperationException("createStatement is not supported in this class.");
     }

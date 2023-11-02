@@ -6,7 +6,6 @@
 package Visualização;
 
 import Fontes.Montserrat;
-import java.awt.Font;
 
 /**
  *
@@ -579,7 +578,7 @@ public class Inicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                new Inicio().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }

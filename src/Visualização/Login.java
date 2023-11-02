@@ -27,6 +27,10 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        
+        Conexao C = new Conexao();
+        C.createDatabase();
+        C.createTable();
 
         URL caminhoImagem = this.getClass().getResource("./imgs/Icon_AS.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
@@ -264,7 +268,6 @@ public class Login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
