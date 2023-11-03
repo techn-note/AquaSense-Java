@@ -30,7 +30,6 @@ public class Login extends javax.swing.JFrame {
         
         Conexao C = new Conexao();
         C.createDatabase();
-        C.createTable();
 
         URL caminhoImagem = this.getClass().getResource("./imgs/Icon_AS.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);

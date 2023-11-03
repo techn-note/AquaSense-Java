@@ -7,7 +7,6 @@ package Controle;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,10 +18,9 @@ import javax.swing.JOptionPane;
  */
 public class Conexao {
 
+    private String banco;
     final private String driver = "com.mysql.jdbc.Driver";
-
-    private String banco = null;
-    final private String url = "jdbc:mysql://127.0.0.1/" + banco;
+    final private String url = "jdbc:mysql://127.0.0.1/aquasense";
     final private String usuario = "root";
     final private String senha = "";
     private Connection conexao;
@@ -47,8 +45,8 @@ public class Conexao {
         return result;
     }
 
-    public void novaConexao() {
-        
+    public void createDatabase() {
+
         try {
             Class.forName(driver);
             conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1/", usuario, senha);
@@ -58,41 +56,29 @@ public class Conexao {
             JOptionPane.showMessageDialog(null, "Erro na conexão com a fonte de dados: " + Fonte);
         }
 
-    }
-    
-    public void createDatabase() {
-        novaConexao();
-        
-        banco = "CREATE DATABASE IF NOT EXISTS aquasense";
-         try {
-
+        String insert = "CREATE DATABASE IF NOT EXISTS ";
+        banco = "aquasense";
+        try {
             statement = conexao.createStatement();
-
-            statement.execute(banco);
-            //desconecta();
+            statement.execute(insert + banco);
         } catch (SQLException sqle) {
             JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
         }
-        
-    }
-    
-    public void createTable() {
-    novaConexao();
-        
-        String table = "CREATE TABLE IF NOT EXISTS usuario";
-         try {
 
+        String createTable = "CREATE TABLE IF NOT EXISTS usuario"
+                + " (codigo int(3),\n"
+                + " nome varchar(50),"
+                + " email varchar(210),"
+                + " senha varchar(100))";
+        try {
+            conexao = DriverManager.getConnection(url, usuario, senha);
             statement = conexao.createStatement();
+            statement.execute(createTable);
 
-            statement.execute(table);
-            //desconecta();
         } catch (SQLException sqle) {
             JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
         }
-        
     }
-    
-
 
     public void desconecta() {
         boolean result = true;
@@ -106,14 +92,11 @@ public class Conexao {
     }
 
     public void executeSQL(String sql) {
-//chamada do metodo conecta para abrir a conexão com o db
         conecta();
         try {
-
             statement = conexao.createStatement();
 
             statement.execute(sql);
-            //desconecta();
         } catch (SQLException sqle) {
             JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
         }
