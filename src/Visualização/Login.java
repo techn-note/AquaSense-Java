@@ -5,7 +5,7 @@
  */
 package Visualização;
 
-import Controle.Conexao;
+import Controle.BancoDDL;
 import Modelo.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -28,8 +28,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         
-        Conexao C = new Conexao();
-        C.createDatabase();
+        BancoDDL bd = new BancoDDL();
+        bd.criandoBanco();
 
         URL caminhoImagem = this.getClass().getResource("./imgs/Icon_AS.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);

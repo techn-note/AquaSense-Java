@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
  */
 public class Conexao {
 
-    private String banco;
     final private String driver = "com.mysql.jdbc.Driver";
     final private String url = "jdbc:mysql://127.0.0.1/aquasense";
     final private String usuario = "root";
@@ -43,41 +42,6 @@ public class Conexao {
             result = false;
         }
         return result;
-    }
-
-    public void createDatabase() {
-
-        try {
-            Class.forName(driver);
-            conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1/", usuario, senha);
-        } catch (ClassNotFoundException Driver) {
-            JOptionPane.showMessageDialog(null, "Driver nao localizado: " + Driver);
-        } catch (SQLException Fonte) {
-            JOptionPane.showMessageDialog(null, "Erro na conexão com a fonte de dados: " + Fonte);
-        }
-
-        String insert = "CREATE DATABASE IF NOT EXISTS ";
-        banco = "aquasense";
-        try {
-            statement = conexao.createStatement();
-            statement.execute(insert + banco);
-        } catch (SQLException sqle) {
-            JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
-        }
-
-        String createTable = "CREATE TABLE IF NOT EXISTS usuario"
-                + " (codigo int(3),\n"
-                + " nome varchar(50),"
-                + " email varchar(210),"
-                + " senha varchar(100))";
-        try {
-            conexao = DriverManager.getConnection(url, usuario, senha);
-            statement = conexao.createStatement();
-            statement.execute(createTable);
-
-        } catch (SQLException sqle) {
-            JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
-        }
     }
 
     public void desconecta() {
