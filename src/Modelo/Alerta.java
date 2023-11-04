@@ -52,5 +52,5 @@ public class Alerta {
         this.dtHora = dtHora;
     }
     
-    
+        
 }
