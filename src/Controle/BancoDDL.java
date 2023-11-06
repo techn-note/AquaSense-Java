@@ -17,19 +17,19 @@ public class BancoDDL {
     final private String usuario = "root";
     final private String senha = "";
 
-    final private String Usuarios = "CREATE TABLE Usuarios ("
+    final private String Usuarios = "CREATE TABLE IF NOT EXISTS Usuarios ("
             + "Id_Usuario INTEGER PRIMARY KEY,"
             + "Nome VARCHAR(250),"
             + "Email VARCHAR(250),"
             + "Senha VARCHAR(250),"
             + "Telefone VARCHAR(20),"
             + "UNIQUE (Email, Telefone));";
-    final private String Dimensao = "CREATE TABLE Dimensao ("
+    final private String Dimensao = "CREATE TABLE IF NOT EXISTS Dimensao ("
             + "Id_Dimensao INT PRIMARY KEY,"
             + "Comprimento DOUBLE,"
             + "Largura DOUBLE,"
             + "Profundidade DOUBLE);";
-    final private String Tanque = "CREATE TABLE Tanque ( "
+    final private String Tanque = "CREATE TABLE IF NOT EXISTS Tanque ( "
             + "Id_Tanque INT PRIMARY KEY, "
             + "Nome VARCHAR(250), "
             + "Capacidade DOUBLE, "
@@ -64,7 +64,7 @@ public class BancoDDL {
             + "Id_Peixe INT PRIMARY KEY,"
             + "Idade INT,"
             + "Peso DOUBLE,"
-            + "Comprimento DOUBL,"
+            + "Comprimento DOUBLE,"
             + "Sexo CHAR(1),"
             + "Data_chegada DATE,"
             + "Notas VARCHAR(500),"
