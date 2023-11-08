@@ -6,6 +6,7 @@
 package Visualização;
 
 import Fontes.Montserrat;
+import java.awt.Color;
 
 /**
  *
@@ -22,6 +23,14 @@ public class Dados extends javax.swing.JFrame {
         Montserrat fontManager = new Montserrat();
         this.jLabel2.setFont(fontManager.FonteBold(35));
         this.jLabel3.setFont(fontManager.FonteRegular(30));
+        
+        jTable1.getTableHeader().setFont(fontManager.FonteBold(12));
+        jTable1.getTableHeader().setOpaque(false);
+        jTable1.getTableHeader().setBackground(new Color(150, 200, 215));
+        jTable1.getTableHeader().setForeground(new Color(33, 33, 33));
+        jTable1.setRowHeight(25);
+        
+        
     }
 
     /**
@@ -46,6 +55,9 @@ public class Dados extends javax.swing.JFrame {
         PainelInicio = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,15 +182,66 @@ public class Dados extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(245, 245, 245));
         jLabel3.setText("de Dados");
 
+        jTable1.setBackground(new java.awt.Color(245, 245, 245));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Ciclo", "Tanque", "Sensor Temperatura", "Sensor Ph", "Sensor Oxigenação", "Hora", "Data"
+            }
+        ));
+        jTable1.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        jTable1.setFocusable(false);
+        jTable1.getTableHeader().setOpaque(false);
+        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        jTable1.setName(""); // NOI18N
+        jTable1.setRowHeight(25);
+        jTable1.setRowSorter(null);
+        jTable1.setSelectionBackground(new java.awt.Color(0, 0, 255));
+        jTable1.setSelectionForeground(new java.awt.Color(245, 245, 245));
+        jTable1.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(174, 174, 174))
+        );
+        jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout PainelInicioLayout = new javax.swing.GroupLayout(PainelInicio);
         PainelInicio.setLayout(PainelInicioLayout);
         PainelInicioLayout.setHorizontalGroup(
             PainelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelInicioLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addGroup(PainelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PainelInicioLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PainelInicioLayout.setVerticalGroup(
@@ -188,10 +251,13 @@ public class Dados extends javax.swing.JFrame {
                 .addGroup(PainelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PainelInicio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         PainelInicio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelInicio.setLayer(jLayeredPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -291,6 +357,9 @@ public class Dados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

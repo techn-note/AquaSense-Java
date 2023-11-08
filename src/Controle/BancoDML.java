@@ -22,6 +22,8 @@ public class BancoDML {
     public BancoDML(Connection conexao) {
         this.conexao = conexao;
     }
+    
+    /; apenas teste 
 
     public void inserirTanque(int idTanque, String nome, double capacidade, Timestamp dataHoraInstalacao, int idDimensao, int idUsuario) {
         String sql = "INSERT INTO Tanque (Id_Tanque, Nome, Capacidade, Data_hora_Instalacao, fk_Dimensao_Id_Dimensao, fk_Usuario_Id_Usuario) VALUES (?, ?, ?, ?, ?, ?)";

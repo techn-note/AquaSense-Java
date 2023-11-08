@@ -71,7 +71,7 @@ public class Usuario {
         if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos antes de registrar.");
         } else {
-            String sql = "INSERT INTO usuario (nome, email, senha) VALUES ('" + nome + "','" + email + "','" + senha + "' )";
+            String sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('" + nome + "','" + email + "','" + senha + "' )";
 
             try {
                 C.executeSQL(sql);
@@ -87,7 +87,7 @@ public class Usuario {
         ResultSet tabela;
         tabela = null;
 
-        String sql = "SELECT * FROM usuario WHERE email = '" + this.getEmail() + "' AND senha = '" + this.getSenha() + "'";
+        String sql = "SELECT * FROM usuarios WHERE email = '" + this.getEmail() + "' AND senha = '" + this.getSenha() + "'";
 
         tabela = C.RetornarResultset(sql);
 
