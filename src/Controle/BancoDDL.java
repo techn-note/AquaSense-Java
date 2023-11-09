@@ -23,7 +23,7 @@ public class BancoDDL {
             + "Email VARCHAR(250) UNIQUE,"
             + "Senha VARCHAR(250),"
             + "Telefone VARCHAR(20) UNIQUE,"
-            + "UNIQUE (Email));";
+            + "UNIQUE (Email, Telefone));";
     final private String Dimensao = "CREATE TABLE IF NOT EXISTS Dimensao ("
             + "Id_Dimensao INT PRIMARY KEY AUTO_INCREMENT,"
             + "Comprimento DOUBLE,"
