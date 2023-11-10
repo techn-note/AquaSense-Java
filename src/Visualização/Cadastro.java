@@ -6,6 +6,9 @@ package Visualização;
 
 import Controle.Conexao;
 import Modelo.Usuario;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +22,11 @@ public class Cadastro extends javax.swing.JFrame {
      */
     public Cadastro() {
         initComponents();
+        
+        URL caminhoImagem = this.getClass().getResource("./imgs/Icon_AS.png");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
+        setIconImage(iconeTitulo);
+        
     }
 
     Usuario usuario = new Usuario();

@@ -87,8 +87,6 @@ public class BancoDDL {
             if (conexao != null) {
                 java.sql.Statement statement = conexao.createStatement();
                 statement.execute(insert + banco);
-
-                JOptionPane.showMessageDialog(null, "Banco de dados criado com sucesso.");
             }
         } catch (SQLException sqle) {
             JOptionPane.showMessageDialog(null, "Erro ao criar banco de dados: " + sqle.getMessage());

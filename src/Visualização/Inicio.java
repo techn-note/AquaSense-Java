@@ -6,6 +6,9 @@
 package Visualização;
 
 import Fontes.Montserrat;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 
 /**
  *
@@ -18,6 +21,12 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        
+        URL caminhoImagem = this.getClass().getResource("./imgs/Icon_AS.png");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
+        setIconImage(iconeTitulo);
+        
+        
         Montserrat fontManager = new Montserrat();
         this.jLabel2.setFont(fontManager.FonteBold(35));
         this.jLabel3.setFont(fontManager.FonteRegular(30));
@@ -546,7 +555,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Dados Dados = new Dados();
+        Dados.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
