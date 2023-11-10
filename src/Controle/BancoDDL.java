@@ -65,9 +65,6 @@ public class BancoDDL {
             + "Idade INT,"
             + "Peso DOUBLE,"
             + "Comprimento DOUBLE,"
-            + "Sexo CHAR(1),"
-            + "Data_chegada DATE,"
-            + "Notas VARCHAR(500),"
             + "Ciclo INT,"
             + "fk_Tanque_Id_Tanque INT,"
             + "CONSTRAINT fk_PeixeTanque FOREIGN KEY (fk_Tanque_Id_Tanque) REFERENCES Tanque (Id_Tanque))";
