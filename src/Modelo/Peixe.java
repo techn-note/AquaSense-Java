@@ -5,47 +5,56 @@
  */
 package Modelo;
 
-import Controle.Conexao;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author dsm2
  */
 class Peixe {
-    private String nome;
-    private String especie;
+
+    private double comprimento;
+    private double peso;
+    private String peixe;
     private int idade;
-    private float peso;
-    private int quantidade;
-    
-    Conexao C = new Conexao();
+    private int ciclo;
 
     public Peixe() {
-        this("","",0,0.0f,0);
+        this(0.0, 0.0, "", 0, 0);
     }
 
-    public Peixe(String nome, String especie, int idade, float peso, int quantidade) {
-        this.nome = nome;
-        this.especie = especie;
-        this.idade = idade;
+    public Peixe(double comprimento, double peso, String peixe, int idade, int ciclo) {
+        this.comprimento = comprimento;
         this.peso = peso;
-        this.quantidade = quantidade;
+        this.peixe = peixe;
+        this.idade = idade;
+        this.ciclo = ciclo;
     }
 
-    public String getNome() {
-        return nome;
+    public double getComprimento() {
+        return comprimento;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setComprimento(double comprimento) {
+        this.comprimento = comprimento;
     }
 
-    public String getEspecie() {
-        return especie;
+    public double getPeso() {
+        return peso;
     }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public String getPeixe() {
+        return peixe;
+    }
+
+    public void setPeixe(String peixe) {
+        this.peixe = peixe;
     }
 
     public int getIdade() {
@@ -56,21 +65,30 @@ class Peixe {
         this.idade = idade;
     }
 
-    public float getPeso() {
-        return peso;
+    public int getCiclo() {
+        return ciclo;
     }
 
-    public void setPeso(float peso) {
-        this.peso = peso;
+    public void setCiclo(int ciclo) {
+        this.ciclo = ciclo;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
+    public List<Peixe> obterDadosSensor(ResultSet resultSet) {
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+        List<Peixe> Peixe = new ArrayList<>();
+
+        try {
+            while (resultSet.next()) {
+                Peixe.add(new Peixe(resultSet.getDouble("Comprimento"),
+                        resultSet.getDouble("Peso"),
+                        resultSet.getString("Peixe"),
+                        resultSet.getInt("Idade"),
+                        resultSet.getInt("Ciclo")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Peixe;
     }
-    
-    
 }
