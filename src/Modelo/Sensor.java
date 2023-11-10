@@ -68,12 +68,12 @@ public class Sensor {
         ResultSet tabela;
         tabela = null;
 
-        String sql = "SELECT p.Ciclo, t.Nome, sph.valor, sod.valor, stemp.valor, sph.data_hora_leitura, sod.data_hora_leitura, stemp.data_hora_leitura"
-                + "FROM sensores s"
-                + "JOIN Tanque t ON t.Id_Tanque = s.fk_Tanque_Id_Tanque"
-                + "JOIN peixe p ON p.id_peixe = t.Id_tanque"
-                + "JOIN SenPH sph ON sph.fk_Sensores_Id_Sensores = s.Id_sensores"
-                + "JOIN SenOD sod ON sod.fk_Sensores_Id_Sensores = s.Id_sensores"
+        String sql = "SELECT p.Ciclo, t.Nome, sph.valor, sod.valor, stemp.valor, sph.data_hora_leitura "
+                + "FROM sensores s "
+                + "JOIN Tanque t ON t.Id_Tanque = s.fk_Tanque_Id_Tanque "
+                + "JOIN peixe p ON p.id_peixe = t.Id_tanque "
+                + "JOIN SenPH sph ON sph.fk_Sensores_Id_Sensores = s.Id_sensores "
+                + "JOIN SenOD sod ON sod.fk_Sensores_Id_Sensores = s.Id_sensores "
                 + "JOIN SenTemp stemp ON stemp.fk_Sensores_Id_Sensores = s.Id_sensores";
         tabela = C.RetornarResultset(sql);
         return tabela;
