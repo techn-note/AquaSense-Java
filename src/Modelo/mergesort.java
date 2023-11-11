@@ -15,37 +15,37 @@ import java.util.List;
 public class mergesort {
 
     public static void mergeSort(List<Integer> lista, int esq, int dir) {
-        if (esq == dir) {
+        if (esq == dir) { // 1
             return;
         }
-        int meio = (esq + dir) / 2;
-        mergeSort(lista, esq, meio);
-        mergeSort(lista, meio + 1, dir);
-        merge(lista, esq, meio, dir);
+        int meio = (esq + dir) / 2; // 3
+        mergeSort(lista, esq, meio);// f(n/2)
+        mergeSort(lista, meio + 1, dir); //f(n/2)
+        merge(lista, esq, meio, dir); 
     }
 
     public static void merge(List<Integer> lista, int esq, int meio, int dir) {
-        int a_tam = meio - esq + 1;
-        int b_tam = dir - meio;
+        int a_tam = meio - esq + 1; // 3
+        int b_tam = dir - meio; // 2
 
-        List<Integer> a = new ArrayList<>(lista.subList(esq, esq + a_tam));
-        List<Integer> b = new ArrayList<>(lista.subList(meio + 1, meio + 1 + b_tam));
+        List<Integer> a = new ArrayList<>(lista.subList(esq, esq + a_tam)); // 1
+        List<Integer> b = new ArrayList<>(lista.subList(meio + 1, meio + 1 + b_tam)); // 1
 
-        int i = 0, j = 0, k = esq;
+        int i = 0, j = 0, k = esq; //3
 
-        for (; i < a_tam && j < b_tam; k++) {
-            if (a.get(i) < b.get(j)) {
-                lista.set(k, a.get(i++));
+        for (; i < a_tam && j < b_tam; k++) { // 10*n/2
+            if (a.get(i) < b.get(j)) { // 1
+                lista.set(k, a.get(i++)); //1
             } else {
-                lista.set(k, b.get(j++));
+                lista.set(k, b.get(j++)); //1
             }
         }
 
-        for (; i < a_tam; k++, i++) {
+        for (; i < a_tam; k++, i++) { // 5 * n/2
             lista.set(k, a.get(i));
         }
 
-        for (; j < b_tam; k++, j++) {
+        for (; j < b_tam; k++, j++) { // 5 * n/2
             lista.set(k, b.get(j));
         }
     }
