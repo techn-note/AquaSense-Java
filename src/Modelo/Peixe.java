@@ -88,9 +88,9 @@ public class Peixe {
         return Peixe;
     }
 
-    public void CadastrarPeixe(double comp, double peso, int idade, int ciclo) {
+    public void CadastrarPeixe(int idade, double peso, double comprimento, int ciclo) {
 
-        String sql = "INSERT INTO Peixe (Comprimento, Peso, Idade, Ciclo) VALUES ('" + comp + "','" + peso + "','" + idade + "','" + ciclo + "' )";
+        String sql = "INSERT INTO Peixe (Idade, Peso, Comprimento, Ciclo) VALUES ('" + idade + "','" + peso + "','" + comprimento + "','" + ciclo + "' )";
 
         try {
             conexao.executeSQL(sql);
@@ -99,46 +99,13 @@ public class Peixe {
             JOptionPane.showMessageDialog(null, "Erro ao registrar: " + e.getMessage());
         }
     }
-/*
-    public ResultSet consultarPeixe() {
-        String sql = "SELECT Comprimento, Peso, Idade, Ciclo FROM Peixe";
-        try (PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-                ResultSet tabela = null;
-                tabela = conexao.RetornarResultset(sql)
-                ResultSet resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()) {
-                double comprimento = resultSet.getDouble("Comprimento");
-                double peso = resultSet.getDouble("Peso");
-                int idade = resultSet.getInt("Idade");
-                int ciclo = resultSet.getInt("Ciclo");
-                System.out.println("Comprimento: " + comprimento + ", Peso: " + peso
-                        + ", Idade: " + idade + ", Ciclo: " + ciclo);
-            }
-        } catch (SQLException sqle) {
-            System.out.println("Erro ao consultar peixe: " + sqle.getMessage());
-        }
+
+    public ResultSet consultarPeixes() {
+        ResultSet tabela;
+        tabela = null;
+
+        String sql = "Select Idade, Peso, Comprimento, Ciclo from Peixe";
+        tabela = conexao.RetornarResultset(sql);
         return tabela;
     }
-
-    public ResultSet consultarPeixe() {
-    String sql = "SELECT Comprimento, Peso, Idade, Ciclo FROM Peixe";
-    ResultSet tabela = null;
-
-    try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
-        tabela = preparedStatement.executeQuery();
-        while (tabela.next()) {
-            double comprimento = tabela.getDouble("Comprimento");
-            double peso = tabela.getDouble("Peso");
-            int idade = tabela.getInt("Idade");
-            int ciclo = tabela.getInt("Ciclo");
-            System.out.println("Comprimento: " + comprimento + ", Peso: " + peso
-                    + ", Idade: " + idade + ", Ciclo: " + ciclo);
-        }
-    } catch (SQLException sqle) {
-        System.out.println("Erro ao consultar peixe: " + sqle.getMessage());
-    }
-
-    return tabela;
-}
-*/
 }

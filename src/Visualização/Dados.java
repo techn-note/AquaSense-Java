@@ -9,12 +9,15 @@ import Controle.Conexao;
 import Fontes.Montserrat;
 import Modelo.Sensor;
 import Modelo.Peixe;
+import Modelo.mergesort;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,61 +28,54 @@ import javax.swing.table.DefaultTableModel;
  * @author dsm2
  */
 public class Dados extends javax.swing.JFrame {
-        
-        
+
     /**
      * Creates new form Dados
-     */ public void consultarDados(){
-         
-         Sensor S = new Sensor();
-               //MOSTRAR OS DADOS NA TABELA
+     */
+    public void consultarDados() {
+
+        Sensor S = new Sensor();
+        //MOSTRAR OS DADOS NA TABELA
         ResultSet tabela;
         tabela = null;
-        
+
         //CHAMAR O MÉTODO CONSULTAR
         tabela = S.consultar();
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
-        try{
-            do{
-                modelo.addRow(new String[] {tabela.getString(1),tabela.getString(2), tabela.getString(3),tabela.getString(4),tabela.getString(5),tabela.getString(6)});
-            }
-            while(tabela.next());
-        }
-        catch(SQLException erro){
-            JOptionPane.showMessageDialog(null,"Erro preencher tabela" + erro);
+        try {
+            do {
+                modelo.addRow(new String[]{tabela.getString(1), tabela.getString(2), tabela.getString(3), tabela.getString(4), tabela.getString(5), tabela.getString(6)});
+            } while (tabela.next());
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro preencher tabela" + erro);
 
         }
-     }
-     
+    }
+
     public Dados() {
         initComponents();
 
         URL caminhoImagem = this.getClass().getResource("./imgs/Icon_AS.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
         setIconImage(iconeTitulo);
-        
-        
+
         Montserrat fontManager = new Montserrat();
         //this.jLabel2.setFont(fontManager.FonteBold(35));
-       // this.jLabel3.setFont(fontManager.FonteRegular(30));
+        // this.jLabel3.setFont(fontManager.FonteRegular(30));
         this.jLabel22.setFont(fontManager.FonteBold(20));
-       
+
         jTable1.getTableHeader().setFont(fontManager.FonteBold(12));
         jTable1.getTableHeader().setOpaque(false);
         jTable1.getTableHeader().setBackground(new Color(150, 200, 215));
         jTable1.getTableHeader().setForeground(new Color(33, 33, 33));
         jTable1.setRowHeight(25);
         consultarDados();
-        
-        
-        
+
     }
-        
-          
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,14 +127,15 @@ public class Dados extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtCiclo = new javax.swing.JTextField();
-        txtComprimento = new javax.swing.JTextField();
-        txtPeso = new javax.swing.JTextField();
         txtIdade = new javax.swing.JTextField();
+        txtPeso = new javax.swing.JTextField();
+        txtComprimento = new javax.swing.JTextField();
+        txtCiclo = new javax.swing.JTextField();
         btnCadPeixes = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
+        btnOrdena = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,7 +161,7 @@ public class Dados extends javax.swing.JFrame {
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/Recarregar.png"))); // NOI18N
         jButton14.setContentAreaFilled(false);
-        jButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -175,6 +172,11 @@ public class Dados extends javax.swing.JFrame {
 
         jLabel22.setForeground(new java.awt.Color(245, 245, 245));
         jLabel22.setText("Rodrigo");
+
+        Header.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jButton14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
         Header.setLayout(HeaderLayout);
@@ -205,15 +207,11 @@ public class Dados extends javax.swing.JFrame {
                                 .addComponent(jLabel22)))))
                 .addGap(776, 776, 776))
         );
-        Header.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jButton14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setBackground(new java.awt.Color(30, 30, 30));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnInicio_0.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -223,7 +221,7 @@ public class Dados extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(30, 30, 30));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnDados_1.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.setOpaque(true);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +232,7 @@ public class Dados extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(30, 30, 30));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnConfiguracoes_0.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.setOpaque(true);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,8 +243,13 @@ public class Dados extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(30, 30, 30));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnLogout.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.setOpaque(true);
+
+        Nav.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout NavLayout = new javax.swing.GroupLayout(Nav);
         Nav.setLayout(NavLayout);
@@ -274,10 +277,6 @@ public class Dados extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
-        Nav.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         PainelInicio.setBackground(new java.awt.Color(42, 42, 42));
         PainelInicio.setOpaque(true);
@@ -307,11 +306,9 @@ public class Dados extends javax.swing.JFrame {
             }
         ));
         jTable1.setFocusable(false);
-        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTable1.setRowHeight(25);
         jTable1.setSelectionBackground(new java.awt.Color(204, 204, 255));
         jTable1.setSelectionForeground(new java.awt.Color(153, 153, 153));
-        jTable1.setShowVerticalLines(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jTable1);
 
@@ -366,7 +363,6 @@ public class Dados extends javax.swing.JFrame {
             }
         ));
         jTable3.setFocusable(false);
-        jTable3.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTable3.setRowHeight(25);
         jScrollPane5.setViewportView(jTable3);
 
@@ -492,38 +488,38 @@ public class Dados extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Ciclo", "Comprimento", "Peso", "Idade(dias)"
+                "Idade", "Peso", "Comprimento", "Ciclo"
             }
         ));
         jScrollPane4.setViewportView(tblPeixes);
 
         jLabel8.setForeground(new java.awt.Color(245, 245, 245));
-        jLabel8.setText("Ciclo");
+        jLabel8.setText("Idade");
 
         jLabel9.setForeground(new java.awt.Color(245, 245, 245));
-        jLabel9.setText("Comprimento");
+        jLabel9.setText("Peso");
 
         jLabel10.setForeground(new java.awt.Color(245, 245, 245));
-        jLabel10.setText("Peso");
+        jLabel10.setText("Comprimento");
 
         jLabel11.setForeground(new java.awt.Color(245, 245, 245));
-        jLabel11.setText("Idade");
-
-        txtCiclo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCicloActionPerformed(evt);
-            }
-        });
-
-        txtComprimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtComprimentoActionPerformed(evt);
-            }
-        });
+        jLabel11.setText("Ciclo");
 
         txtIdade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdadeActionPerformed(evt);
+            }
+        });
+
+        txtPeso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesoActionPerformed(evt);
+            }
+        });
+
+        txtCiclo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCicloActionPerformed(evt);
             }
         });
 
@@ -544,6 +540,13 @@ public class Dados extends javax.swing.JFrame {
         });
 
         jButton13.setText("Limpar");
+
+        btnOrdena.setText("Ordenar");
+        btnOrdena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -566,26 +569,31 @@ public class Dados extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtComprimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCiclo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtPeso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIdade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(82, 82, 82)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                                    .addComponent(txtIdade))))
-                        .addGap(115, 115, 115)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCadPeixes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(164, 164, 164)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtComprimento, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                    .addComponent(txtCiclo))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCadPeixes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(164, 164, 164)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(242, 242, 242)
+                                .addComponent(btnOrdena)))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -599,7 +607,7 @@ public class Dados extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -607,29 +615,32 @@ public class Dados extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(btnCadPeixes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtComprimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtComprimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel10))
-                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnOrdena)
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txtCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(122, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Peixe", jPanel2);
+
+        PainelInicio.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout PainelInicioLayout = new javax.swing.GroupLayout(PainelInicio);
         PainelInicio.setLayout(PainelInicioLayout);
@@ -641,7 +652,6 @@ public class Dados extends javax.swing.JFrame {
             PainelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
-        PainelInicio.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Dados Principais Gerais");
 
@@ -653,7 +663,7 @@ public class Dados extends javax.swing.JFrame {
                 .addComponent(Nav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PainelInicio))
-            .addComponent(Header, javax.swing.GroupLayout.DEFAULT_SIZE, 1278, Short.MAX_VALUE)
+            .addComponent(Header, javax.swing.GroupLayout.DEFAULT_SIZE, 1321, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -719,48 +729,84 @@ public class Dados extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void btnCadPeixesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadPeixesActionPerformed
-       Peixe peixe = new Peixe();
-    
-    // Certifique-se de que os métodos de set estejam corretos no seu objeto Peixe
-    peixe.setCiclo(Integer.parseInt(txtCiclo.getText()));
-    peixe.setComprimento(Double.parseDouble(txtComprimento.getText()));
-    peixe.setPeso(Double.parseDouble(txtPeso.getText()));
-    peixe.setIdade(Integer.parseInt(txtIdade.getText()));
+        Peixe peixe = new Peixe();
 
-    // Certifique-se de que o método CadastrarPeixe esteja corretamente implementado
-    peixe.CadastrarPeixe(peixe.getComprimento(),peixe.getPeso(),peixe.getIdade(),peixe.getCiclo());
+        // Obter os dados da interface gráfica (substitua os campos de texto pelos campos reais)
+        int idade = Integer.parseInt(txtIdade.getText());
+        double peso = Double.parseDouble(txtPeso.getText());
+        double comprimento = Double.parseDouble(txtComprimento.getText());
+        int ciclo = Integer.parseInt(txtCiclo.getText());
+        peixe.CadastrarPeixe(idade, peso, comprimento, ciclo);
 
-    /* Agora, consulte os peixes após o cadastro
-     ResultSet tabela = peixe.consultarPeixe();
+        ResultSet tabela;
+        tabela = null;
 
-    DefaultTableModel modelo = (DefaultTableModel) tblPeixes.getModel();
-    modelo.setNumRows(0);
+        tabela = peixe.consultarPeixes();
+        DefaultTableModel modelo = (DefaultTableModel) tblPeixes.getModel();
+        modelo.setNumRows(0);
 
-    try {
-        // Use o while diretamente
-        while (tabela.next()) {
-            modelo.addRow(new String[] { tabela.getString(1), tabela.getString(2), tabela.getString(3), tabela.getString(4)});
+        try {
+            do {
+                modelo.addRow(new String[]{tabela.getString(1), tabela.getString(2), tabela.getString(3), tabela.getString(4)});
+
+            } while (tabela.next());
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao preencher a tabela" + erro);
+
         }
-    } catch (SQLException erro) {
-        JOptionPane.showMessageDialog(null, "Erro ao preencher a tabela" + erro);
-    }*/
     }//GEN-LAST:event_btnCadPeixesActionPerformed
 
-    private void txtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdadeActionPerformed
+    private void txtCicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCicloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdadeActionPerformed
+    }//GEN-LAST:event_txtCicloActionPerformed
 
-    private void txtComprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComprimentoActionPerformed
+    private void txtPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtComprimentoActionPerformed
+    }//GEN-LAST:event_txtPesoActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void txtCicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCicloActionPerformed
+    private void txtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCicloActionPerformed
+    }//GEN-LAST:event_txtIdadeActionPerformed
+
+    private void btnOrdenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenaActionPerformed
+        // Obter os dados da tabela e armazenar em listas
+        ArrayList<Integer> idadeList = new ArrayList<>();
+        ArrayList<Double> pesoList = new ArrayList<>();
+        ArrayList<Double> comprimentoList = new ArrayList<>();
+        ArrayList<Integer> cicloList = new ArrayList<>();
+
+        for (int i = 0; i < tblPeixes.getRowCount(); i++) {
+            // Obter o valor da célula
+            int idadeValue = Integer.parseInt(tblPeixes.getValueAt(i, 0).toString());
+            idadeList.add(idadeValue);
+
+            double pesoValue = Double.parseDouble(tblPeixes.getValueAt(i, 1).toString());
+            pesoList.add(pesoValue);
+
+            double comprimentoValue = Double.parseDouble(tblPeixes.getValueAt(i, 2).toString());
+            comprimentoList.add(comprimentoValue);
+
+            int cicloValue = Integer.parseInt(tblPeixes.getValueAt(i, 3).toString());
+            cicloList.add(cicloValue);
+        }
+
+// Criar uma instância de mergesort e aplicar o mergeSort
+        mergesort sorter = new mergesort();
+        sorter.mergeSort(idadeList, 0, idadeList.size() - 1);
+
+// Atualizar a tabela com os dados ordenados
+        DefaultTableModel modelo = (DefaultTableModel) tblPeixes.getModel();
+        modelo.setNumRows(0);
+
+        for (int i = 0; i < idadeList.size(); i++) {
+            modelo.addRow(new Object[]{idadeList.get(i), pesoList.get(i), comprimentoList.get(i), cicloList.get(i)});
+        }
+
+    }//GEN-LAST:event_btnOrdenaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -802,6 +848,7 @@ public class Dados extends javax.swing.JFrame {
     private javax.swing.JLayeredPane Nav;
     private javax.swing.JLayeredPane PainelInicio;
     private javax.swing.JButton btnCadPeixes;
+    private javax.swing.JButton btnOrdena;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
