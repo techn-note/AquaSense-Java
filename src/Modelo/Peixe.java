@@ -5,30 +5,35 @@
  */
 package Modelo;
 
+import Controle.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author dsm2
  */
-class Peixe {
+public class Peixe {
+
+    Conexao conexao = new Conexao();
 
     private double comprimento;
     private double peso;
-    private String peixe;
     private int idade;
     private int ciclo;
 
     public Peixe() {
-        this(0.0, 0.0, "", 0, 0);
+        this(0.0, 0.0, 0, 0);
     }
 
-    public Peixe(double comprimento, double peso, String peixe, int idade, int ciclo) {
+    public Peixe(double comprimento, double peso, int idade, int ciclo) {
         this.comprimento = comprimento;
         this.peso = peso;
-        this.peixe = peixe;
         this.idade = idade;
         this.ciclo = ciclo;
     }
@@ -47,14 +52,6 @@ class Peixe {
 
     public void setPeso(double peso) {
         this.peso = peso;
-    }
-
-    public String getPeixe() {
-        return peixe;
-    }
-
-    public void setPeixe(String peixe) {
-        this.peixe = peixe;
     }
 
     public int getIdade() {
@@ -81,7 +78,6 @@ class Peixe {
             while (resultSet.next()) {
                 Peixe.add(new Peixe(resultSet.getDouble("Comprimento"),
                         resultSet.getDouble("Peso"),
-                        resultSet.getString("Peixe"),
                         resultSet.getInt("Idade"),
                         resultSet.getInt("Ciclo")));
             }
@@ -91,4 +87,58 @@ class Peixe {
 
         return Peixe;
     }
+
+    public void CadastrarPeixe(double comp, double peso, int idade, int ciclo) {
+
+        String sql = "INSERT INTO Peixe (Comprimento, Peso, Idade, Ciclo) VALUES ('" + comp + "','" + peso + "','" + idade + "','" + ciclo + "' )";
+
+        try {
+            conexao.executeSQL(sql);
+            JOptionPane.showMessageDialog(null, "Registrado com sucesso");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao registrar: " + e.getMessage());
+        }
+    }
+/*
+    public ResultSet consultarPeixe() {
+        String sql = "SELECT Comprimento, Peso, Idade, Ciclo FROM Peixe";
+        try (PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+                ResultSet tabela = null;
+                tabela = conexao.RetornarResultset(sql)
+                ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                double comprimento = resultSet.getDouble("Comprimento");
+                double peso = resultSet.getDouble("Peso");
+                int idade = resultSet.getInt("Idade");
+                int ciclo = resultSet.getInt("Ciclo");
+                System.out.println("Comprimento: " + comprimento + ", Peso: " + peso
+                        + ", Idade: " + idade + ", Ciclo: " + ciclo);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Erro ao consultar peixe: " + sqle.getMessage());
+        }
+        return tabela;
+    }
+
+    public ResultSet consultarPeixe() {
+    String sql = "SELECT Comprimento, Peso, Idade, Ciclo FROM Peixe";
+    ResultSet tabela = null;
+
+    try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
+        tabela = preparedStatement.executeQuery();
+        while (tabela.next()) {
+            double comprimento = tabela.getDouble("Comprimento");
+            double peso = tabela.getDouble("Peso");
+            int idade = tabela.getInt("Idade");
+            int ciclo = tabela.getInt("Ciclo");
+            System.out.println("Comprimento: " + comprimento + ", Peso: " + peso
+                    + ", Idade: " + idade + ", Ciclo: " + ciclo);
+        }
+    } catch (SQLException sqle) {
+        System.out.println("Erro ao consultar peixe: " + sqle.getMessage());
+    }
+
+    return tabela;
+}
+*/
 }

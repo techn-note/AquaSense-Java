@@ -16,6 +16,7 @@ import java.sql.Timestamp;
  * @author dsm2
  */
 public class tanque {
+
     private double capacidade;
     private double nivelVolume;
     private double temperaturaAgua;
@@ -24,7 +25,7 @@ public class tanque {
     private double peixes;
 
     public tanque() {
-        this(0.0,0.0,0.0,0.0,0.0,0.0);
+        this(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     }
 
     public tanque(double capacidade, double nivelVolume, double temperaturaAgua, double pHAgua, double oxigenacao, double peixes) {
@@ -83,7 +84,7 @@ public class tanque {
     public void setPeixes(double peixes) {
         this.peixes = peixes;
     }
-    
+
     private Connection conexao;
 
     public tanque(Connection conexao) {
@@ -149,5 +150,4 @@ public class tanque {
         }
     }
 
-    
 }
