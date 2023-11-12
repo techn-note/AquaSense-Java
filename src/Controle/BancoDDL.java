@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,6 +8,7 @@ package Controle;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class BancoDDL {
@@ -69,6 +70,14 @@ public class BancoDDL {
             + "fk_Tanque_Id_Tanque INT,"
             + "CONSTRAINT fk_PeixeTanque FOREIGN KEY (fk_Tanque_Id_Tanque) REFERENCES Tanque (Id_Tanque))";
 
+    final private String insertusu = "INSERT INTO Usuarios (Nome, Email, Senha, Telefone) VALUES"
+            + "    ('Usuario1', 'usuario1@email.com', 'senha1', '1234567890'),"
+            + "    ('Usuario2', 'usuario2@email.com', 'senha2', '9876543210'),"
+            + "    ('Usuario3', 'usuario3@email.com', 'senha3', '1112223333'),"
+            + "    ('Usuario4', 'usuario4@email.com', 'senha4', '4445556666'),"
+            + "    ('Usuario5', 'usuario5@email.com', 'senha5', '7778889999')"
+            + " ON DUPLICATE KEY UPDATE Email=VALUES(Email)";
+
     public void criandoBanco() {
         Connection conexao = null;
         try {
@@ -100,18 +109,32 @@ public class BancoDDL {
             }
         }
 
-        criandoTabela("Usuarios",Usuarios);
-        criandoTabela("Dimensão",Dimensao);
-        criandoTabela("Tanque",Tanque);
-        criandoTabela("Sensores",Sensores);
-        criandoTabela("Sensor de Ph",SenPH);
-        criandoTabela("Sensor de Oxigenio Dissolvido",SenOD);
-        criandoTabela("Sensor de Temperatura",SenTemp);
-        criandoTabela("Peixe",Peixe);
+        criandoTabela("Usuarios", Usuarios);
+        criandoTabela("Dimensão", Dimensao);
+        criandoTabela("Tanque", Tanque);
+        criandoTabela("Sensores", Sensores);
+        criandoTabela("Sensor de Ph", SenPH);
+        criandoTabela("Sensor de Oxigenio Dissolvido", SenOD);
+        criandoTabela("Sensor de Temperatura", SenTemp);
+        criandoTabela("Peixe", Peixe);
+
+        inserindoDados();
 
     }
 
-    public void criandoTabela(String Nome,String table) {
+    public void inserindoDados() {
+        try (Connection conexao = DriverManager.getConnection(url + "aquasense", usuario, senha)) {
+            if (conexao != null) {
+                try (Statement statement = conexao.createStatement()) {
+                    statement.executeUpdate(insertusu);
+                }
+            }
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir dados na tabela Usuarios: " + sqle.getMessage());
+        }
+    }
+
+    public void criandoTabela(String Nome, String table) {
 
         try (Connection conexao = DriverManager.getConnection(url + "aquasense", usuario, senha)) {
             if (conexao != null) {
@@ -119,9 +142,8 @@ public class BancoDDL {
                 statement.execute(table);
             }
         } catch (SQLException sqle) {
-            JOptionPane.showMessageDialog(null, "Erro ao criar tabela "+Nome+":" + sqle.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao criar tabela " + Nome + ":" + sqle.getMessage());
         }
 
     }
-
 }
