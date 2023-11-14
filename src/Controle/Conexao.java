@@ -60,10 +60,13 @@ public class Conexao {
         conecta();
         try {
             statement = conexao.createStatement();
-
             statement.execute(sql);
         } catch (SQLException sqle) {
-            JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
+            if (sqle.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "Email já cadastrado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro SQL: " + sqle.getMessage());
+            }
         }
     }
 

@@ -248,6 +248,10 @@ public class Cadastro extends javax.swing.JFrame {
 
         usuario.cadastrar(usuario.getNome(), usuario.getEmail(), usuario.getSenha());
         
+        
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked

@@ -72,7 +72,7 @@ public class Usuario {
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos antes de registrar.");
         } else {
             String sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('" + nome + "','" + email + "','" + senha + "' )";
-
+            
             try {
                 C.executeSQL(sql);
                 JOptionPane.showMessageDialog(null, "Registrado com sucesso");

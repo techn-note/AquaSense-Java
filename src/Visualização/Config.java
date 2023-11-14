@@ -46,10 +46,13 @@ public class Config extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Nav.setBackground(new java.awt.Color(30, 30, 30));
+        Nav.setOpaque(true);
+
         jButton1.setBackground(new java.awt.Color(30, 30, 30));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnInicio_0.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -59,7 +62,7 @@ public class Config extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(30, 30, 30));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnDados_0.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setOpaque(true);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,11 +91,6 @@ public class Config extends javax.swing.JFrame {
             }
         });
 
-        Nav.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout NavLayout = new javax.swing.GroupLayout(Nav);
         Nav.setLayout(NavLayout);
         NavLayout.setHorizontalGroup(
@@ -119,8 +117,14 @@ public class Config extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
+        Nav.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        Header.setBackground(new java.awt.Color(30, 30, 30));
         Header.setMinimumSize(new java.awt.Dimension(1143, 853));
+        Header.setOpaque(true);
         Header.setPreferredSize(new java.awt.Dimension(1143, 77));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/Logo-Dark.png"))); // NOI18N
@@ -139,24 +143,20 @@ public class Config extends javax.swing.JFrame {
             }
         });
 
-        Header.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
         Header.setLayout(HeaderLayout);
         HeaderLayout.setHorizontalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HeaderLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 543, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel21)
                         .addGap(469, 469, 469))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel24)
@@ -167,20 +167,24 @@ public class Config extends javax.swing.JFrame {
         HeaderLayout.setVerticalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HeaderLayout.createSequentialGroup()
-                .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(HeaderLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton6)
-                            .addComponent(jLabel24)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, HeaderLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel22)))
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel21)))
+                .addContainerGap()
+                .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton6)
+                        .addComponent(jLabel24)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, HeaderLayout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel22)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        Header.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         PainelInicio.setBackground(new java.awt.Color(42, 42, 42));
         PainelInicio.setOpaque(true);
@@ -200,10 +204,6 @@ public class Config extends javax.swing.JFrame {
             }
         });
 
-        PainelInicio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        PainelInicio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        PainelInicio.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout PainelInicioLayout = new javax.swing.GroupLayout(PainelInicio);
         PainelInicio.setLayout(PainelInicioLayout);
         PainelInicioLayout.setHorizontalGroup(
@@ -216,7 +216,7 @@ public class Config extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(669, Short.MAX_VALUE))
         );
         PainelInicioLayout.setVerticalGroup(
             PainelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,6 +229,9 @@ public class Config extends javax.swing.JFrame {
                 .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        PainelInicio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelInicio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelInicio.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,8 +239,9 @@ public class Config extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(Nav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PainelInicio))
+                .addGap(0, 0, 0)
+                .addComponent(PainelInicio)
+                .addGap(0, 0, 0))
             .addComponent(Header, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -266,7 +270,9 @@ public class Config extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
