@@ -4,7 +4,7 @@
  */
 package Visualização;
 
-import Controle.BancoDDL;
+import Controle.BancoDML;
 
 /**
  *
@@ -284,7 +284,7 @@ public class Configuracoes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        BancoDDL bd = new BancoDDL();
+        BancoDML bd = new BancoDML();
         bd.inserindoDados();
     }//GEN-LAST:event_jButton5ActionPerformed
 

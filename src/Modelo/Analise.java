@@ -6,12 +6,18 @@
 package Modelo;
 
 import Controle.Conexao;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
  * @author dsm2
  */
 public class Analise {
+
     private float dadoAmonia;
     private float dadoTemp;
     private float dadoVolume;
@@ -19,9 +25,13 @@ public class Analise {
     private float dadoOxigenacao;
 
     Conexao C = new Conexao();
-    
+
+    final private String url = "jdbc:mysql://127.0.0.1/aquasense";
+    final private String usuario = "root";
+    final private String senha = "";
+
     public Analise() {
-        this(0.0f,0.0f,0.0f,0.0f,0.0f);
+        this(0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     public Analise(float dadoAmonia, float dadoTemp, float dadoVolume, float dadoPH, float dadoOxigenacao) {
@@ -71,7 +81,69 @@ public class Analise {
     public void setDadoOxigenacao(float dadoOxigenacao) {
         this.dadoOxigenacao = dadoOxigenacao;
     }
+
+    public Float obterUltimoValorSenPH() {
+        String consultaSQL = "SELECT Valor FROM SenPH ORDER BY Id_pH DESC LIMIT 1";
+
+        try (Connection conexao = DriverManager.getConnection(url, usuario, senha); PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                dadoPH = resultSet.getFloat("Valor");
+            } else {
+                System.out.println("Nenhum valor encontrado em SenPH.");
+            }
+
+        } catch (SQLException sqle) {
+            // Trate a exceção apropriadamente
+            sqle.printStackTrace();
+        }
+
+        return dadoPH;
+    }
+
+    public Float obterUltimoValorSenOD() {
+        String consultaSQL = "SELECT Valor FROM SenOD ORDER BY Id_SenOD DESC LIMIT 1";
+
+        try (Connection conexao = DriverManager.getConnection(url, usuario, senha); PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                dadoOxigenacao = resultSet.getFloat("Valor");
+            } else {
+                System.out.println("Nenhum valor encontrado em SenPH.");
+            }
+
+        } catch (SQLException sqle) {
+            // Trate a exceção apropriadamente
+            sqle.printStackTrace();
+        }
+
+        return dadoOxigenacao;
+    }
+
+    public Float obterUltimoValorSenTemp() {
+        String consultaSQL = "SELECT Valor FROM SenTemp ORDER BY Id_SenTemp DESC LIMIT 1";
+
+        try (Connection conexao = DriverManager.getConnection(url, usuario, senha); PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                dadoTemp = resultSet.getFloat("Valor");
+            } else {
+                System.out.println("Nenhum valor encontrado em SenPH.");
+            }
+
+        } catch (SQLException sqle) {
+            // Trate a exceção apropriadamente
+            sqle.printStackTrace();
+        }
+
+        return dadoTemp;
+    }
     
-    
-        
+    public Float obterDadoAmonia(){
+        double pKa = 9.25;
+
+        dadoAmonia = (float) (Math.pow(10, (dadoPH - pKa)) * Math.pow(2.71828, (-0.08 * (dadoTemp - 25))));
+
+        return dadoAmonia;
+    }
 }
