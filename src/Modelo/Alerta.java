@@ -55,42 +55,39 @@ public class Alerta {
     }
 
     public void alertaPH() {
-
         Float ultimoValorPH = analise.obterUltimoValorSenPH();
+        String mensagemAlerta = null;
 
         if (ultimoValorPH != null && ultimoValorPH > 7) {
-
-            System.out.println("Alerta: O valor de pH é maior que 7!\n");
+            mensagemAlerta = "Alerta: O valor de pH é maior que 7!\n";
         }
+        
     }
 
     public void alertaOD() {
-
         Float ultimoValorOD = analise.obterUltimoValorSenOD();
-
+        String mensageAlerta = null;
+        
         if (ultimoValorOD != null && ultimoValorOD < 5) {
-
-            System.out.println("Os níveis de Oxigenação estão menores que 5\n");
+            mensageAlerta = "Os Níveis de oxigenação estão menores que 5\n";
         }
     }
 
     public void alertaTemp() {
-
         Float ultimoValorTemp = analise.obterUltimoValorSenTemp();
+        String mensageAlerta = null;
 
         if (ultimoValorTemp != null && ultimoValorTemp > 25) {
-
-            System.out.println("As medições de temperatura estão maiores que 25!\n");
+            mensageAlerta= "As medições de temperatura estão maiores que 25!\n";
         }
     }
 
     public void alertaAmonia() {
-
         Float obterDadoAmonia = analise.obterDadoAmonia();
+        String mensageAlerta = null;
 
-        if (obterDadoAmonia != null && obterDadoAmonia < 1) {
-
-            System.out.println("Amonia muito baixa!\n");
+        if (obterDadoAmonia != null && obterDadoAmonia > 1) {
+            mensageAlerta = "Amonia muito alta!\n";
         }
     }
 

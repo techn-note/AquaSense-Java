@@ -25,6 +25,7 @@ public class Analise {
     private float dadoOxigenacao;
 
     Conexao C = new Conexao();
+    Sensor S = new Sensor();
 
     final private String url = "jdbc:mysql://127.0.0.1/aquasense";
     final private String usuario = "root";
@@ -94,7 +95,6 @@ public class Analise {
             }
 
         } catch (SQLException sqle) {
-            // Trate a exceção apropriadamente
             sqle.printStackTrace();
         }
 
@@ -113,7 +113,6 @@ public class Analise {
             }
 
         } catch (SQLException sqle) {
-            // Trate a exceção apropriadamente
             sqle.printStackTrace();
         }
 
@@ -132,7 +131,6 @@ public class Analise {
             }
 
         } catch (SQLException sqle) {
-            // Trate a exceção apropriadamente
             sqle.printStackTrace();
         }
 
@@ -140,10 +138,19 @@ public class Analise {
     }
     
     public Float obterDadoAmonia(){
-        double pKa = 9.25;
 
-        dadoAmonia = (float) (Math.pow(10, (dadoPH - pKa)) * Math.pow(2.71828, (-0.08 * (dadoTemp - 25))));
+        double pKaAmonia = 9.26;
+        
+        dadoAmonia = (float) (Math.pow(10, (dadoPH - pKaAmonia)) * Math.pow(2.71828, (-0.08 * (dadoTemp - 25))));
+        
+        dadoAmonia *= 100;
 
         return dadoAmonia;
+    }
+    
+    public float obterDadoVolume(){
+        dadoVolume = S.getRegistrosVolume();
+        
+        return dadoVolume;
     }
 }

@@ -6,6 +6,9 @@
 package Visualização;
 
 import Fontes.Montserrat;
+import Modelo.Alerta;
+import Modelo.Analise;
+import Modelo.Sensor;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -21,27 +24,53 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-        
+
         URL caminhoImagem = this.getClass().getResource("./imgs/Icon_AS.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
         setIconImage(iconeTitulo);
+
+        Analise teste = new Analise();
+        Sensor sens = new Sensor();
+        Alerta alerta = new Alerta();
+
+        Float valorPH = teste.obterUltimoValorSenPH();
+        String textoPH = (valorPH != null) ? valorPH.toString() : "Valor indisponível";
+        txtPH.setText("     " + textoPH);
+
+        Float valorTemp = teste.obterUltimoValorSenTemp();
+        String textoTemp = (valorTemp != null) ? valorTemp.toString() : "Valor indisponível";
+        txtTemp.setText("   " + textoTemp + "ºC");
+
+        Float valorAmonia = teste.obterDadoAmonia();
+        String textoAmonia = (valorAmonia != null) ? String.format("%.2f", valorAmonia) : "Valor indisponível";
+        txtAmonia.setText("    " + textoAmonia);
+
+        Float valorOD = teste.obterUltimoValorSenOD();
+        String textoOD = (valorOD != null) ? valorOD.toString() : "Valor indisponível";
+        txtOD.setText("" + textoOD + "mg/L");
         
+        Float valorVolume = sens.getRegistrosVolume();
+        String textoVolume = (valorVolume != null) ? valorVolume.toString() : "Valor indisponível";
+        txtVolume.setText("" + textoVolume + " Litros");
         
+        String textoAlerta = alerta.getMensageAlerta();
+        txtAlerta.setText("<html><head><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap\" rel=\"stylesheet\"></head><p style=\"font-family: 'Montserrat', sans-serif;\">" + textoAlerta + "</p>");
+
         Montserrat fontManager = new Montserrat();
         this.jLabel2.setFont(fontManager.FonteBold(35));
         this.jLabel3.setFont(fontManager.FonteRegular(30));
         this.jLabel4.setFont(fontManager.FonteBold(20));
-        this.jLabel5.setFont(fontManager.FonteBold(35));
+        this.txtVolume.setFont(fontManager.FonteBold(35));
         this.jLabel6.setFont(fontManager.FonteExtraBold(15));
         this.jLabel7.setFont(fontManager.FonteBold(20));
-        this.jLabel8.setFont(fontManager.FonteBold(35));
+        this.txtOD.setFont(fontManager.FonteBold(35));
         this.jLabel11.setFont(fontManager.FonteBold(35));
         this.jLabel9.setFont(fontManager.FonteExtraBold(15));
-        this.jLabel10.setFont(fontManager.FonteBold(40));
-        this.jLabel15.setFont(fontManager.FonteBold(40));
-        this.jLabel16.setFont(fontManager.FonteBold(40));
+        this.txtPH.setFont(fontManager.FonteBold(40));
+        this.txtTemp.setFont(fontManager.FonteBold(35));
+        this.txtAmonia.setFont(fontManager.FonteBold(40));
         this.jLabel18.setFont(fontManager.FonteBold(20));
-        this.jLabel19.setFont(fontManager.FonteBold(20));
+        this.txtAlerta.setFont(fontManager.FonteBold(20));
         this.jLabel22.setFont(fontManager.FonteBold(20));
     }
 
@@ -73,29 +102,29 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        txtVolume = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        txtPH = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel15 = new javax.swing.JLabel();
+        txtTemp = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLayeredPane6 = new javax.swing.JLayeredPane();
-        jLabel16 = new javax.swing.JLabel();
+        txtAmonia = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        txtOD = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        txtAlerta = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -122,12 +151,6 @@ public class Inicio extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-
-        Header.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
         Header.setLayout(HeaderLayout);
@@ -165,6 +188,11 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jLabel21)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        Header.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setBackground(new java.awt.Color(30, 30, 30));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnInicio_1.png"))); // NOI18N
@@ -179,7 +207,7 @@ public class Inicio extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(30, 30, 30));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnDados_0.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setOpaque(true);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +218,7 @@ public class Inicio extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(30, 30, 30));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnConfiguracoes_0.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setOpaque(true);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,18 +229,13 @@ public class Inicio extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(30, 30, 30));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnLogout.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setOpaque(true);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-
-        Nav.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout NavLayout = new javax.swing.GroupLayout(Nav);
         Nav.setLayout(NavLayout);
@@ -240,6 +263,10 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
+        Nav.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         PainelInicio.setBackground(new java.awt.Color(42, 42, 42));
         PainelInicio.setOpaque(true);
@@ -261,9 +288,9 @@ public class Inicio extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 47, 91));
         jLabel4.setText("Nível de Água");
 
-        jLabel5.setBackground(new java.awt.Color(242, 242, 242));
-        jLabel5.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel5.setText("156 Litros");
+        txtVolume.setBackground(new java.awt.Color(242, 242, 242));
+        txtVolume.setForeground(new java.awt.Color(242, 242, 242));
+        txtVolume.setText("156 Litros");
 
         jLabel6.setText("Total:180L");
 
@@ -281,11 +308,6 @@ public class Inicio extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
@@ -298,8 +320,8 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
-                    .addComponent(jLabel5))
-                .addContainerGap(166, Short.MAX_VALUE))
+                    .addComponent(txtVolume))
+                .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
@@ -311,13 +333,17 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(txtVolume)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(14, 14, 14))
         );
+        jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(txtVolume, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane3.setBackground(new java.awt.Color(242, 242, 242));
         jLayeredPane3.setOpaque(true);
@@ -329,39 +355,32 @@ public class Inicio extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(242, 242, 242));
         jPanel4.setLayout(new javax.swing.OverlayLayout(jPanel4));
 
-        jLabel10.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel10.setText("     7.1");
-        jLabel10.setMaximumSize(new java.awt.Dimension(174, 256));
-        jLabel10.setMinimumSize(new java.awt.Dimension(174, 256));
-        jLabel10.setPreferredSize(new java.awt.Dimension(174, 256));
-        jPanel4.add(jLabel10);
+        txtPH.setForeground(new java.awt.Color(242, 242, 242));
+        txtPH.setMaximumSize(new java.awt.Dimension(174, 256));
+        txtPH.setMinimumSize(new java.awt.Dimension(174, 256));
+        txtPH.setPreferredSize(new java.awt.Dimension(174, 256));
+        jPanel4.add(txtPH);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/QuadroPh.png"))); // NOI18N
         jPanel4.add(jLabel12);
 
         jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
 
-        jLabel15.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel15.setText("    18°C");
-        jLabel15.setPreferredSize(new java.awt.Dimension(14, 14));
-        jLayeredPane1.add(jLabel15);
+        txtTemp.setForeground(new java.awt.Color(242, 242, 242));
+        txtTemp.setPreferredSize(new java.awt.Dimension(14, 14));
+        jLayeredPane1.add(txtTemp);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/QuadroTemp.png"))); // NOI18N
         jLayeredPane1.add(jLabel13);
 
         jLayeredPane6.setLayout(new javax.swing.OverlayLayout(jLayeredPane6));
 
-        jLabel16.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel16.setText("    0.54");
-        jLayeredPane6.add(jLabel16);
+        txtAmonia.setForeground(new java.awt.Color(242, 242, 242));
+        txtAmonia.setText("    0.54");
+        jLayeredPane6.add(txtAmonia);
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/QuadroAmonia.png"))); // NOI18N
         jLayeredPane6.add(jLabel14);
-
-        jLayeredPane3.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(jLayeredPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(jLayeredPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
         jLayeredPane3.setLayout(jLayeredPane3Layout);
@@ -391,6 +410,10 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jLayeredPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        jLayeredPane3.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLayeredPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLayeredPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane4.setBackground(new java.awt.Color(242, 242, 242));
         jLayeredPane4.setOpaque(true);
@@ -414,17 +437,12 @@ public class Inicio extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(75, 75, 75));
         jLabel7.setText("Nível de Oxigenação");
 
-        jLabel8.setBackground(new java.awt.Color(242, 242, 242));
-        jLabel8.setForeground(new java.awt.Color(42, 152, 255));
-        jLabel8.setText("4.3mg/L");
+        txtOD.setBackground(new java.awt.Color(242, 242, 242));
+        txtOD.setForeground(new java.awt.Color(42, 152, 255));
+        txtOD.setText("= ");
 
         jLabel9.setForeground(new java.awt.Color(75, 75, 75));
         jLabel9.setText("Recomendado: 5mg/L");
-
-        jLayeredPane4.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane4.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane4.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane4.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane4Layout = new javax.swing.GroupLayout(jLayeredPane4);
         jLayeredPane4.setLayout(jLayeredPane4Layout);
@@ -437,8 +455,8 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7))
-                    .addComponent(jLabel8))
-                .addContainerGap(132, Short.MAX_VALUE))
+                    .addComponent(txtOD))
+                .addContainerGap(145, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel9)
@@ -450,13 +468,17 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(txtOD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(14, 14, 14))
         );
+        jLayeredPane4.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane4.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane4.setLayer(txtOD, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane4.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane5.setBackground(new java.awt.Color(242, 242, 242));
         jLayeredPane5.setOpaque(true);
@@ -466,11 +488,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel18.setBackground(new java.awt.Color(0, 132, 255));
         jLabel18.setText("Dica do Dia");
 
-        jLabel19.setText("<html><head><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap\" rel=\"stylesheet\"></head><p style=\"font-family: 'Montserrat', sans-serif;\">Aumente a temperatura do tanque pois os peixes não podem ficar a uma temperatura abaixo de 16° C, o ideal é mantê-los dentro de 24°C a 30°C!</p>");
-
-        jLayeredPane5.setLayer(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane5.setLayer(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane5.setLayer(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        txtAlerta.setText("<html><head><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap\" rel=\"stylesheet\"></head><p style=\"font-family: 'Montserrat', sans-serif;\">Aumente a temperatura do tanque pois os peixes não podem ficar a uma temperatura abaixo de 16° C, o ideal é mantê-los dentro de 24°C a 30°C!</p>");
 
         javax.swing.GroupLayout jLayeredPane5Layout = new javax.swing.GroupLayout(jLayeredPane5);
         jLayeredPane5.setLayout(jLayeredPane5Layout);
@@ -482,7 +500,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jLayeredPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane5Layout.setVerticalGroup(
@@ -493,19 +511,15 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLayeredPane5Layout.createSequentialGroup()
                         .addContainerGap(14, Short.MAX_VALUE)
                         .addComponent(jLabel17)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
-
-        PainelInicio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        PainelInicio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        PainelInicio.setLayer(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        PainelInicio.setLayer(jLayeredPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        PainelInicio.setLayer(jLayeredPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        PainelInicio.setLayer(jLayeredPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane5.setLayer(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane5.setLayer(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane5.setLayer(txtAlerta, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout PainelInicioLayout = new javax.swing.GroupLayout(PainelInicio);
         PainelInicio.setLayout(PainelInicioLayout);
@@ -546,6 +560,12 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jLayeredPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
+        PainelInicio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelInicio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelInicio.setLayer(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelInicio.setLayer(jLayeredPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelInicio.setLayer(jLayeredPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelInicio.setLayer(jLayeredPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -654,26 +674,20 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     public javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
@@ -687,5 +701,11 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel txtAlerta;
+    private javax.swing.JLabel txtAmonia;
+    private javax.swing.JLabel txtOD;
+    private javax.swing.JLabel txtPH;
+    private javax.swing.JLabel txtTemp;
+    private javax.swing.JLabel txtVolume;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,6 +11,10 @@ package Visualização;
  */
 public class teste extends javax.swing.JFrame {
 
+    static Float obterDadoAmonia() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Creates new form teste
      */

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Sensor {
 
-    private List<Float> registrosVolume = new ArrayList<>();
+    public float registrosVolume = 150;
     private List<Float> registrosTemperatura = new ArrayList<>();
     private List<Float> registrosPH = new ArrayList<>();
     private List<Float> registrosOxigenacao = new ArrayList<>();
@@ -24,11 +24,11 @@ public class Sensor {
 
     Conexao C = new Conexao();
 
-    public List<Float> getRegistrosVolume() {
+    public float getRegistrosVolume() {
         return registrosVolume;
     }
 
-    public void setRegistrosVolume(List<Float> registrosVolume) {
+    public void setRegistrosVolume(float registrosVolume) {
         this.registrosVolume = registrosVolume;
     }
 
