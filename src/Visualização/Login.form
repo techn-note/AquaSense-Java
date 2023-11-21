@@ -114,7 +114,7 @@
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="79" max="32767" attributes="0"/>
+                      <EmptySpace pref="83" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -201,7 +201,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Entrar"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor Padr&#xe3;o"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
@@ -211,6 +211,9 @@
             <Component class="javax.swing.JTextField" name="txtEmail">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Text Cursor"/>
+                </Property>
                 <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                   <Insets value="[2, 10, 2, 2]"/>
                 </Property>
@@ -239,7 +242,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastre-se"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                  <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
@@ -247,6 +250,11 @@
               </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtSenha">
+              <Properties>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Text Cursor"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

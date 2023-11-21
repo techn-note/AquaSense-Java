@@ -34,7 +34,7 @@ public class BancoDDL {
             + "Id_Tanque INT PRIMARY KEY AUTO_INCREMENT, "
             + "Nome VARCHAR(250), "
             + "Capacidade DOUBLE, "
-            + "Data_hora_Instalacao DATETIME, "
+            + "Data_hora_Instalacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
             + "fk_Dimensao_Id_Dimensao INT, "
             + "fk_Usuario_Id_Usuario INT, "
             + "CONSTRAINT fk_TanqueDimensao FOREIGN KEY (fk_Dimensao_Id_Dimensao) REFERENCES Dimensao (Id_Dimensao), "

@@ -54,41 +54,44 @@ public class Alerta {
         this.dtHora = dtHora;
     }
 
-    public void alertaPH() {
+    public String alertaPH() {
         Float ultimoValorPH = analise.obterUltimoValorSenPH();
-        String mensagemAlerta = null;
+        String mensagemAlerta = "";
 
-        if (ultimoValorPH != null && ultimoValorPH > 7) {
-            mensagemAlerta = "Alerta: O valor de pH é maior que 7!\n";
+        if (ultimoValorPH != null && ultimoValorPH < 6.5) {
+            mensagemAlerta = "Atenção: O nível de acidez (pH) está elevado. Considere realizar correções.\n";
         }
-        
+        return mensagemAlerta;
     }
 
-    public void alertaOD() {
+    public String alertaOD() {
         Float ultimoValorOD = analise.obterUltimoValorSenOD();
-        String mensageAlerta = null;
+        String mensagemAlerta = "";
         
-        if (ultimoValorOD != null && ultimoValorOD < 5) {
-            mensageAlerta = "Os Níveis de oxigenação estão menores que 5\n";
+        if (ultimoValorOD != null && ultimoValorOD <= 4) {
+            mensagemAlerta = "Alerta: Baixa oxigenação na água, abaixo de 5. Verifique e melhore a circulação de oxigênio.\n";
         }
+        return mensagemAlerta;
     }
 
-    public void alertaTemp() {
+    public String alertaTemp() {
         Float ultimoValorTemp = analise.obterUltimoValorSenTemp();
-        String mensageAlerta = null;
+        String mensagemAlerta = "";
 
         if (ultimoValorTemp != null && ultimoValorTemp > 25) {
-            mensageAlerta= "As medições de temperatura estão maiores que 25!\n";
+            mensagemAlerta= "Atenção: Temperatura acima de 25°. Verifique se há condições adequadas para os organismos.\n";
         }
+        return mensagemAlerta;
     }
 
-    public void alertaAmonia() {
+    public String alertaAmonia() {
         Float obterDadoAmonia = analise.obterDadoAmonia();
-        String mensageAlerta = null;
+        String mensagemAlerta = "";
 
         if (obterDadoAmonia != null && obterDadoAmonia > 1) {
-            mensageAlerta = "Amonia muito alta!\n";
+            mensagemAlerta = "Alerta de concentração elevada de amônia. Tome medidas para garantir a saúde dos organismos.\n";
         }
+        return mensagemAlerta;
     }
 
 }

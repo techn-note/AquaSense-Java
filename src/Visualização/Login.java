@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        
+
         BancoDDL bd = new BancoDDL();
         bd.criandoBanco();
 
@@ -38,6 +39,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     Usuario U = new Usuario();
+
+    public String email;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,7 +90,7 @@ public class Login extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 61, 165));
         jButton1.setForeground(new java.awt.Color(245, 245, 245));
         jButton1.setText("Entrar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -95,6 +98,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         txtEmail.setToolTipText("");
+        txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtEmail.setMargin(new java.awt.Insets(2, 10, 2, 2));
         txtEmail.setName("Email"); // NOI18N
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +120,8 @@ public class Login extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
+
+        txtSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -144,7 +150,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(jLabel3)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -219,6 +225,11 @@ public class Login extends javax.swing.JFrame {
 
         U.setEmail(txtEmail.getText());
         U.setSenha(txtSenha.getText());
+
+        if (U.getEmail().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira um e-mail.");
+            return;
+        }
 
         ResultSet tabela;
         tabela = null;

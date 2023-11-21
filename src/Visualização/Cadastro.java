@@ -93,6 +93,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         txtNome.setToolTipText("");
+        txtNome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtNome.setMargin(new java.awt.Insets(2, 10, 2, 2));
         txtNome.setName("Email"); // NOI18N
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +103,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         txtEmail.setToolTipText("");
+        txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtEmail.setMargin(new java.awt.Insets(2, 10, 2, 2));
         txtEmail.setName("Email"); // NOI18N
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +123,7 @@ public class Cadastro extends javax.swing.JFrame {
         btnCadastrar.setBackground(new java.awt.Color(0, 61, 165));
         btnCadastrar.setForeground(new java.awt.Color(245, 245, 245));
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -157,7 +160,7 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(jLabel9)
                                 .addComponent(txtNome))
                             .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

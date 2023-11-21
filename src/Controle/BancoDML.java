@@ -98,14 +98,6 @@ public class BancoDML {
         }
     }
      */
-    final private String usuarioSQL = "INSERT INTO Usuarios (Nome, Email, Senha, Telefone) VALUES"
-            + "    ('Usuario1', 'usuario1@email.com', 'senha1', '1234567890'),"
-            + "    ('Usuario2', 'usuario2@email.com', 'senha2', '9876543210'),"
-            + "    ('Usuario3', 'usuario3@email.com', 'senha3', '1112223333'),"
-            + "    ('Usuario4', 'usuario4@email.com', 'senha4', '4445556666'),"
-            + "    ('Usuario5', 'usuario5@email.com', 'senha5', '7778889999')"
-            + " ON DUPLICATE KEY UPDATE Email=VALUES(Email)";
-
     final private String dimensaoSQL
             = "INSERT INTO Dimensao (Comprimento, Largura, Profundidade) VALUES"
             + "(5.0, 3.0, 2.0),"
@@ -115,12 +107,12 @@ public class BancoDML {
             + "(5.5, 3.2, 2.5);";
 
     final private String tanqueSQL
-            = "INSERT INTO Tanque (Nome, Capacidade, Data_hora_Instalacao, fk_Dimensao_Id_Dimensao, fk_Usuario_Id_Usuario) VALUES"
-            + "('Tanque1', 1000.0, '2023-01-01 10:00:00', 1, 1),"
-            + "('Tanque2', 800.0, '2023-01-02 12:30:00', 2, 2),"
-            + "('Tanque3', 1200.0, '2023-01-03 14:15:00', 3, 3),"
-            + "('Tanque4', 950.0, '2023-01-04 16:45:00', 4, 4),"
-            + "('Tanque5', 1100.0, '2023-01-05 18:30:00', 5, 5);";
+            = "INSERT INTO Tanque (Nome, Capacidade, Data_hora_Instalacao, fk_Dimensao_Id_Dimensao) VALUES"
+            + "('Tanque1', 100.0, '2023-01-01 10:00:00', 1),"
+            + "('Tanque2', 80.0, '2023-01-02 12:30:00', 2),"
+            + "('Tanque3', 120.0, '2023-01-03 14:15:00', 3),"
+            + "('Tanque4', 90.0, '2023-01-04 16:45:00', 4),"
+            + "('Tanque5', 110.0, '2023-01-05 18:30:00', 5);";
 
     final private String sensoresSQL
             = "INSERT INTO Sensores (fk_Tanque_Id_Tanque) VALUES\n"
@@ -144,7 +136,7 @@ public class BancoDML {
             + "('2023-01-02 13:00:00', 4.8, 2),"
             + "('2023-01-03 14:45:00', 5.2, 3),"
             + "('2023-01-04 17:00:00', 5.5, 4),"
-            + "('2023-01-05 19:00:00', 4.9, 5);";
+            + "('2023-01-05 19:00:00', 4.0, 5);";
 
     final private String senTempSQL
             = "INSERT INTO SenTemp (Data_hora_leitura, Valor, fk_Sensores_Id_Sensores) VALUES"
@@ -166,7 +158,6 @@ public class BancoDML {
         try (Connection conexao = DriverManager.getConnection(url + "aquasense", usuario, senha)) {
             if (conexao != null) {
                 try (Statement statement = conexao.createStatement()) {
-                    statement.executeUpdate(usuarioSQL);
                     statement.executeUpdate(dimensaoSQL);
                     statement.executeUpdate(tanqueSQL);
                     statement.executeUpdate(sensoresSQL);
@@ -181,26 +172,24 @@ public class BancoDML {
         }
     }
 
-    /*
-    private String ultimoNome(int idUsuario) {
-        String ultimoNome = "";
-        String consultaSQL = "SELECT SUBSTRING_INDEX(Nome, ' ', -1) AS UltimoNome FROM Usuarios ORDER BY Id_Usuario DESC LIMIT 1";
+public String primeiroNome() {
+    String primeiroNome = "";
+    String consultaSQL = "SELECT SUBSTRING_INDEX(Nome, ' ', 1) AS PrimeiroNome FROM Usuarios ORDER BY Id_Usuario DESC LIMIT 1";
 
-        try (Connection conexao = DriverManager.getConnection(url + "aquasense", usuario, senha); PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL)) {
+    try (Connection conexao = DriverManager.getConnection(url + "aquasense", usuario, senha);
+         PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL);
+         ResultSet resultSet = preparedStatement.executeQuery()) {
 
-            preparedStatement.setInt(1, idUsuario);
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    ultimoNome = resultSet.getString("UltimoNome");
-                }
-            }
-
-        } catch (SQLException sqle) {
-            JOptionPane.showMessageDialog(null, "Erro ao obter o último nome do usuário: " + sqle.getMessage());
+        if (resultSet.next()) {
+            primeiroNome = resultSet.getString("PrimeiroNome");
         }
 
-        return ultimoNome;
+    } catch (SQLException sqle) {
+        JOptionPane.showMessageDialog(null, "Erro ao obter o primeiro nome do usuário: " + sqle.getMessage());
     }
-    */
+
+    return primeiroNome;
+}
+
+
 }
