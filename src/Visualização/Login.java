@@ -6,6 +6,7 @@
 package Visualização;
 
 import Controle.BancoDDL;
+import Controle.BancoDML;
 import Modelo.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -38,6 +39,7 @@ public class Login extends javax.swing.JFrame {
 
     }
 
+    BancoDML dml = new BancoDML();
     Usuario U = new Usuario();
 
     public String email;
@@ -235,6 +237,7 @@ public class Login extends javax.swing.JFrame {
         tabela = null;
 
         tabela = U.fazerLogin(U.getEmail(), U.getSenha());
+        dml.primeiroNome(txtEmail.getText());
 
         try {
             if (tabela.first()) {

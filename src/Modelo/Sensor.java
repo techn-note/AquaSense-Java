@@ -68,7 +68,7 @@ public class Sensor {
         ResultSet tabela;
         tabela = null;
 
-        String sql = "SELECT p.Ciclo, t.Nome, sph.valor, sod.valor, stemp.valor, sph.data_hora_leitura "
+        String sql = "SELECT p.Ciclo, t.Nome, sph.valor, stemp.valor, sod.valor, sph.data_hora_leitura "
                 + "FROM sensores s "
                 + "JOIN Tanque t ON t.Id_Tanque = s.fk_Tanque_Id_Tanque "
                 + "JOIN peixe p ON p.id_peixe = t.Id_tanque "

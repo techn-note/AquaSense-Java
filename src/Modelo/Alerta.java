@@ -58,7 +58,7 @@ public class Alerta {
         Float ultimoValorPH = analise.obterUltimoValorSenPH();
         String mensagemAlerta = "";
 
-        if (ultimoValorPH != null && ultimoValorPH < 6.5) {
+        if (ultimoValorPH != 0 && ultimoValorPH < 6.5) {
             mensagemAlerta = "Atenção: O nível de acidez (pH) está elevado. Considere realizar correções.\n";
         }
         return mensagemAlerta;
@@ -68,7 +68,7 @@ public class Alerta {
         Float ultimoValorOD = analise.obterUltimoValorSenOD();
         String mensagemAlerta = "";
         
-        if (ultimoValorOD != null && ultimoValorOD <= 4) {
+        if (ultimoValorOD != 0 && ultimoValorOD <= 4) {
             mensagemAlerta = "Alerta: Baixa oxigenação na água, abaixo de 5. Verifique e melhore a circulação de oxigênio.\n";
         }
         return mensagemAlerta;
@@ -78,7 +78,7 @@ public class Alerta {
         Float ultimoValorTemp = analise.obterUltimoValorSenTemp();
         String mensagemAlerta = "";
 
-        if (ultimoValorTemp != null && ultimoValorTemp > 25) {
+        if (ultimoValorTemp != 0 && ultimoValorTemp > 25) {
             mensagemAlerta= "Atenção: Temperatura acima de 25°. Verifique se há condições adequadas para os organismos.\n";
         }
         return mensagemAlerta;
@@ -88,8 +88,10 @@ public class Alerta {
         Float obterDadoAmonia = analise.obterDadoAmonia();
         String mensagemAlerta = "";
 
-        if (obterDadoAmonia != null && obterDadoAmonia > 1) {
+        if (obterDadoAmonia != 0 && obterDadoAmonia > 1) {
             mensagemAlerta = "Alerta de concentração elevada de amônia. Tome medidas para garantir a saúde dos organismos.\n";
+        } else {
+            mensagemAlerta = "Sem recomendações ou Alertas!";
         }
         return mensagemAlerta;
     }

@@ -94,4 +94,9 @@ public class Usuario {
         return tabela;
 
     }
+    
+    
+    public String NomeLogin() {
+        return "";
+    }
 }

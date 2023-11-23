@@ -13,91 +13,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-/*
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
- */
 /**
  *
  * @author eliha
  */
+import Modelo.Usuario;
+
 public class BancoDML {
+
+    Usuario U = new Usuario();
 
     final private String driver = "com.mysql.jdbc.Driver";
     final private String url = "jdbc:mysql://127.0.0.1/";
     final private String usuario = "root";
     final private String senha = "";
-    /*
-    private Connection conexao;
 
-    public BancoDML(Connection conexao) {
-        this.conexao = conexao;
-    }
-    
-    /; apenas teste 
-
-    public void inserirTanque(int idTanque, String nome, double capacidade, Timestamp dataHoraInstalacao, int idDimensao, int idUsuario) {
-        String sql = "INSERT INTO Tanque (Id_Tanque, Nome, Capacidade, Data_hora_Instalacao, fk_Dimensao_Id_Dimensao, fk_Usuario_Id_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
-            preparedStatement.setInt(1, idTanque);
-            preparedStatement.setString(2, nome);
-            preparedStatement.setDouble(3, capacidade);
-            preparedStatement.setTimestamp(4, dataHoraInstalacao);
-            preparedStatement.setInt(5, idDimensao);
-            preparedStatement.setInt(6, idUsuario);
-            preparedStatement.executeUpdate();
-            System.out.println("Tanque inserido com sucesso.");
-        } catch (SQLException sqle) {
-            System.out.println("Erro ao inserir tanque: " + sqle.getMessage());
-        }
-    }
-
-    public void consultarTanques() {
-        String sql = "SELECT * FROM Tanque";
-        try (PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-                ResultSet resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()) {
-                int idTanque = resultSet.getInt("Id_Tanque");
-                String nome = resultSet.getString("Nome");
-                double capacidade = resultSet.getDouble("Capacidade");
-                Timestamp dataHoraInstalacao = resultSet.getTimestamp("Data_hora_Instalacao");
-                int idDimensao = resultSet.getInt("fk_Dimensao_Id_Dimensao");
-                int idUsuario = resultSet.getInt("fk_Usuario_Id_Usuario");
-                System.out.println("ID Tanque: " + idTanque + ", Nome: " + nome + ", Capacidade: " + capacidade
-                        + ", Data/Hora Instalação: " + dataHoraInstalacao + ", ID Dimensão: " + idDimensao
-                        + ", ID Usuário: " + idUsuario);
-            }
-        } catch (SQLException sqle) {
-            System.out.println("Erro ao consultar tanques: " + sqle.getMessage());
-        }
-    }
-
-    public void atualizarTanque(int idTanque, String novoNome) {
-        String sql = "UPDATE Tanque SET Nome = ? WHERE Id_Tanque = ?";
-        try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
-            preparedStatement.setString(1, novoNome);
-            preparedStatement.setInt(2, idTanque);
-            preparedStatement.executeUpdate();
-            System.out.println("Tanque atualizado com sucesso.");
-        } catch (SQLException sqle) {
-            System.out.println("Erro ao atualizar tanque: " + sqle.getMessage());
-        }
-    }
-
-    public void excluirTanque(int idTanque) {
-        String sql = "DELETE FROM Tanque WHERE Id_Tanque = ?";
-        try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
-            preparedStatement.setInt(1, idTanque);
-            preparedStatement.executeUpdate();
-            System.out.println("Tanque excluído com sucesso.");
-        } catch (SQLException sqle) {
-            System.out.println("Erro ao excluir tanque: " + sqle.getMessage());
-        }
-    }
-     */
     final private String dimensaoSQL
             = "INSERT INTO Dimensao (Comprimento, Largura, Profundidade) VALUES"
             + "(5.0, 3.0, 2.0),"
@@ -172,24 +102,25 @@ public class BancoDML {
         }
     }
 
-public String primeiroNome() {
-    String primeiroNome = "";
-    String consultaSQL = "SELECT SUBSTRING_INDEX(Nome, ' ', 1) AS PrimeiroNome FROM Usuarios ORDER BY Id_Usuario DESC LIMIT 1";
+    
+    public String primeiroNome(String Email) {
+        
+        String primeiroNome = "";
+        String consultaSQL = "SELECT SUBSTRING_INDEX(Nome, ' ', 1) as PrimeiroNome FROM Usuarios WHERE Email = '" + Email + "'";
 
-    try (Connection conexao = DriverManager.getConnection(url + "aquasense", usuario, senha);
-         PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL);
-         ResultSet resultSet = preparedStatement.executeQuery()) {
+        try (Connection conexao = DriverManager.getConnection(url + "aquasense", usuario, senha);
+                PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL);
+                ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        if (resultSet.next()) {
-            primeiroNome = resultSet.getString("PrimeiroNome");
+            if (resultSet.next()) {
+                primeiroNome = resultSet.getString("PrimeiroNome");
+            }
+
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "Erro ao obter o primeiro nome do usuário: " + sqle.getMessage());
         }
-
-    } catch (SQLException sqle) {
-        JOptionPane.showMessageDialog(null, "Erro ao obter o primeiro nome do usuário: " + sqle.getMessage());
+        U.setNome(primeiroNome);
+        return primeiroNome;
     }
-
-    return primeiroNome;
-}
-
 
 }

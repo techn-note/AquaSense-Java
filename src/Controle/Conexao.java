@@ -33,7 +33,7 @@ public class Conexao {
         try {
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, usuario, senha);
-            //JOptionPane.showMessageDialog(null,"Conectou com o Banco de Dados");
+
 
         } catch (ClassNotFoundException Driver) {
             JOptionPane.showMessageDialog(null, "Driver nao localizado: " + Driver);

@@ -148,9 +148,21 @@ public class Analise {
         return dadoAmonia;
     }
     
-    public float obterDadoVolume(){
-        dadoVolume = S.getRegistrosVolume();
-        
+        public Float obterDadoVolume() {
+        String consultaSQL = "SELECT Valor FROM SenTemp ORDER BY Id_SenTemp DESC LIMIT 1";
+
+        try (Connection conexao = DriverManager.getConnection(url, usuario, senha); PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                dadoVolume = 150;
+            } else {
+                System.out.println("Nenhum valor encontrado em SenPH.");
+            }
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
         return dadoVolume;
     }
 }
