@@ -3,23 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Controle/BancoDML.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Visualização/Login.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Modelo/mergesort.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Modelo/tanque.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Modelo/Analise.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Visualização/Dados.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Visualização/Configuracoes.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Visualização/Inicio.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Modelo/Sensor.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Modelo/Recomendacao.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Visualização/teste.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Visualização/Cadastro.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Modelo/Usuario.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Modelo/Peixe.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Modelo/Alerta.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Controle/Conexao.java</file>
-            <file>file:/C:/Users/Rodrigo/Desktop/GIT/AquaSense/src/Controle/BancoDDL.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Visualização/Configuracoes.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Modelo/Sensor.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Visualização/Login.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Visualização/Dados.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Visualização/Cadastro.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Modelo/Usuario.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Controle/Conexao.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Modelo/Alerta.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Controle/BancoDDL.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Visualização/Inicio.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Controle/BancoDML.java</file>
+            <file>file:/C:/Users/dsm2/Desktop/AquaSense/src/Modelo/Analise.java</file>
         </group>
     </open-files>
 </project-private>

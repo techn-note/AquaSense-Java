@@ -454,16 +454,16 @@
                                   </Group>
                                   <Component id="jLabel13" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jButton7" min="-2" pref="92" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jButton7" pref="0" max="32767" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnCadastrarTanque" max="32767" attributes="0"/>
+                                          <Component id="btnCadastrarTanque" min="-2" pref="131" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="txtCapacidadeTanque" alignment="0" pref="200" max="32767" attributes="0"/>
+                                      <Component id="txtCapacidadeTanque" alignment="0" pref="275" max="32767" attributes="0"/>
                                       <Component id="txtNomeTanque" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="102" max="32767" attributes="0"/>
+                              <EmptySpace pref="81" max="32767" attributes="0"/>
                               <Component id="jScrollPane5" min="-2" pref="493" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                           </Group>
@@ -490,8 +490,8 @@
                                       <Component id="txtCapacidadeTanque" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButton7" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                                          <Component id="btnCadastrarTanque" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                          <Component id="jButton7" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                                          <Component id="btnCadastrarTanque" alignment="1" min="-2" pref="39" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -547,7 +547,9 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="jButton7">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Limpar"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/Visualiza&#xe7;&#xe3;o/Imgs/btnLimpar.png"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
@@ -555,7 +557,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnCadastrarTanque">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/Visualiza&#xe7;&#xe3;o/Imgs/btnCadastrar.png"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarTanqueActionPerformed"/>
@@ -613,20 +617,17 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane4" min="-2" pref="862" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jScrollPane4" min="-2" pref="862" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel8" min="-2" pref="63" max="-2" attributes="0"/>
@@ -640,12 +641,19 @@
                                           <Component id="txtPeso" alignment="1" max="32767" attributes="0"/>
                                           <Component id="txtComprimento" alignment="1" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                                      <Component id="btnCadPeixes" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnOrdena" min="-2" pref="81" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButton13" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                              <Component id="btnCadPeixes" min="-2" pref="130" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                                              <Component id="jButton13" min="-2" pref="130" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnOrdena" min="-2" pref="130" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
                               <EmptySpace pref="108" max="32767" attributes="0"/>
@@ -681,20 +689,24 @@
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btnCadPeixes" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                                          <Component id="btnOrdena" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                                          <Component id="jButton13" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                                          <Component id="btnCadPeixes" alignment="1" min="-2" pref="39" max="-2" attributes="0"/>
+                                          <Component id="jButton13" alignment="1" min="-2" pref="39" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCiclo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtCiclo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane4" min="-2" pref="207" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnOrdena" min="-2" pref="39" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" min="-2" pref="207" max="-2" attributes="0"/>
-                              <EmptySpace pref="47" max="32767" attributes="0"/>
+                              <EmptySpace pref="55" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -806,7 +818,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnCadPeixes">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/Visualiza&#xe7;&#xe3;o/Imgs/btnCadastrar.png"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadPeixesActionPerformed"/>
@@ -814,7 +828,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton13">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Limpar"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/Visualiza&#xe7;&#xe3;o/Imgs/btnLimpar.png"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13ActionPerformed"/>
@@ -822,7 +838,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnOrdena">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Ordenar"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/Visualiza&#xe7;&#xe3;o/Imgs/btnOrdenar.png"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdenaActionPerformed"/>
