@@ -90,8 +90,6 @@ public class Analise {
 
             if (resultSet.next()) {
                 dadoPH = resultSet.getFloat("Valor");
-            } else {
-                System.out.println("Nenhum valor encontrado em SenPH.");
             }
 
         } catch (SQLException sqle) {
@@ -108,8 +106,6 @@ public class Analise {
 
             if (resultSet.next()) {
                 dadoOxigenacao = resultSet.getFloat("Valor");
-            } else {
-                System.out.println("Nenhum valor encontrado em SenPH.");
             }
 
         } catch (SQLException sqle) {
@@ -126,8 +122,6 @@ public class Analise {
 
             if (resultSet.next()) {
                 dadoTemp = resultSet.getFloat("Valor");
-            } else {
-                System.out.println("Nenhum valor encontrado em SenPH.");
             }
 
         } catch (SQLException sqle) {
@@ -155,8 +149,6 @@ public class Analise {
 
             if (resultSet.next()) {
                 dadoVolume = 150;
-            } else {
-                System.out.println("Nenhum valor encontrado em SenPH.");
             }
 
         } catch (SQLException sqle) {

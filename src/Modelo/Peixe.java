@@ -94,7 +94,6 @@ public class Peixe {
 
         try {
             conexao.executeSQL(sql);
-            JOptionPane.showMessageDialog(null, "Registrado com sucesso");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao registrar: " + e.getMessage());
         }

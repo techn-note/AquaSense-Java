@@ -49,13 +49,4 @@ public class mergesort {
             lista.set(k, b.get(j));
         }
     }
-/*
-    public static void imprimeLista(List<Integer> lista) {
-        System.out.println("\nOrdem correta: lista = {");
-        for (Integer elemento : lista) {
-            System.out.printf("%d ", elemento);
-        }
-        System.out.println("}");
-    }
-*/
 }
