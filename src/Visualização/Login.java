@@ -237,7 +237,6 @@ public class Login extends javax.swing.JFrame {
         tabela = null;
 
         tabela = U.fazerLogin(U.getEmail(), U.getSenha());
-        dml.primeiroNome(txtEmail.getText());
 
         try {
             if (tabela.first()) {

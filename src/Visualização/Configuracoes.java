@@ -34,8 +34,7 @@ public class Configuracoes extends javax.swing.JFrame {
         BancoDML dml = new BancoDML();
         Usuario U = new Usuario();
 
-        String primeiroNomeUsuario = U.getNome();
-        txtNomeUser.setText(primeiroNomeUsuario);
+        txtNomeUser.setText(dml.primeiroNome());
     }
 
     /**

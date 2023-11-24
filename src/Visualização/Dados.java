@@ -110,9 +110,7 @@ public class Dados extends javax.swing.JFrame {
         BancoDML dml = new BancoDML();
         Usuario U = new Usuario();
 
-        String primeiroNomeUsuario = U.getNome();
-
-        txtNomeUser.setText(primeiroNomeUsuario);
+        txtNomeUser.setText(dml.primeiroNome());
 
         jTable1.getTableHeader().setFont(fontManager.FonteBold(12));
         jTable1.getTableHeader().setOpaque(false);
@@ -217,11 +215,6 @@ public class Dados extends javax.swing.JFrame {
 
         txtNomeUser.setForeground(new java.awt.Color(245, 245, 245));
 
-        Header.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jButton14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Header.setLayer(txtNomeUser, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
         Header.setLayout(HeaderLayout);
         HeaderLayout.setHorizontalGroup(
@@ -251,11 +244,15 @@ public class Dados extends javax.swing.JFrame {
                                 .addComponent(txtNomeUser)))))
                 .addGap(776, 776, 776))
         );
+        Header.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jButton14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Header.setLayer(txtNomeUser, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setBackground(new java.awt.Color(30, 30, 30));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnInicio_0.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -276,7 +273,7 @@ public class Dados extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(30, 30, 30));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnConfiguracoes_0.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setOpaque(true);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,18 +284,13 @@ public class Dados extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(30, 30, 30));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnLogout.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setOpaque(true);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-
-        Nav.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Nav.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout NavLayout = new javax.swing.GroupLayout(Nav);
         Nav.setLayout(NavLayout);
@@ -326,6 +318,10 @@ public class Dados extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
+        Nav.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Nav.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         PainelInicio.setBackground(new java.awt.Color(42, 42, 42));
         PainelInicio.setOpaque(true);
@@ -416,6 +412,7 @@ public class Dados extends javax.swing.JFrame {
         jScrollPane5.setViewportView(tblTanque);
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnLimpar.png"))); // NOI18N
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -423,6 +420,7 @@ public class Dados extends javax.swing.JFrame {
         });
 
         btnCadastrarTanque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnCadastrar.png"))); // NOI18N
+        btnCadastrarTanque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCadastrarTanque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarTanqueActionPerformed(evt);
@@ -560,6 +558,7 @@ public class Dados extends javax.swing.JFrame {
         });
 
         btnCadPeixes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnCadastrar.png"))); // NOI18N
+        btnCadPeixes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCadPeixes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadPeixesActionPerformed(evt);
@@ -567,6 +566,7 @@ public class Dados extends javax.swing.JFrame {
         });
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnLimpar.png"))); // NOI18N
+        jButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -574,6 +574,7 @@ public class Dados extends javax.swing.JFrame {
         });
 
         btnOrdena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualização/Imgs/btnOrdenar.png"))); // NOI18N
+        btnOrdena.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOrdena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOrdenaActionPerformed(evt);
@@ -657,8 +658,6 @@ public class Dados extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Peixe", jPanel2);
 
-        PainelInicio.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout PainelInicioLayout = new javax.swing.GroupLayout(PainelInicio);
         PainelInicio.setLayout(PainelInicioLayout);
         PainelInicioLayout.setHorizontalGroup(
@@ -669,6 +668,7 @@ public class Dados extends javax.swing.JFrame {
             PainelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
+        PainelInicio.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Dados Principais Gerais");
 

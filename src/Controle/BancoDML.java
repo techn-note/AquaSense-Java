@@ -103,11 +103,10 @@ public class BancoDML {
     }
 
     
-    public String primeiroNome(String Email) {
+    public String primeiroNome() {
         
         String primeiroNome = "";
-        String consultaSQL = "SELECT SUBSTRING_INDEX(Nome, ' ', 1) as PrimeiroNome FROM Usuarios WHERE Email = '" + Email + "'";
-
+        String consultaSQL = "SELECT SUBSTRING_INDEX(Nome, ' ', 1) AS PrimeiroNome FROM Usuarios ORDER BY Id_Usuario DESC LIMIT 1";
         try (Connection conexao = DriverManager.getConnection(url + "aquasense", usuario, senha);
                 PreparedStatement preparedStatement = conexao.prepareStatement(consultaSQL);
                 ResultSet resultSet = preparedStatement.executeQuery()) {

@@ -38,8 +38,7 @@ public class Inicio extends javax.swing.JFrame {
         Usuario U = new Usuario();
 
         System.out.println(U.getNome());
-        String primeiroNomeUsuario = U.getNome();
-        txtNomeUser.setText(primeiroNomeUsuario);
+        txtNomeUser.setText(dml.primeiroNome());
 
         Float valorPH = teste.obterUltimoValorSenPH();
         String textoPH = (valorPH != null) ? valorPH.toString() : "Valor indisponível";
